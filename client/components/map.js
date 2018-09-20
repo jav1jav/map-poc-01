@@ -1,96 +1,64 @@
 import React from 'react'
+import ReactDOM from 'react-dom'
 import PropTypes from 'prop-types'
 import {connect} from 'react-redux'
 import mapboxgl from 'mapbox-gl/dist/mapbox-gl.js'
 
-mapboxgl.accessToken = process.env.MAPBOX_TOKEN
-
-//var map = new mapboxgl.Map('map-seven', 'mapbox.streets', {
-var map = new mapboxgl.Map({
-  container: 'map',
-  style: 'mapbox://styles/mapbox/streets-v10',
-  center: [-122.486052, 37.830348],
-  zoom: 15,
-  scrollWheelZoom: false,
-  legendControl: {
-    position: 'topright'
-  }
-})
-
-var geojson = {
-  type: 'FeatureCollection',
-  features: [
-    {
-      type: 'Feature',
-      geometry: {
-        type: 'Point',
-        coordinates: [-77.0366048812866, 38.89784666877921]
-      },
-      properties: {
-        title: 'The White House',
-        'marker-color': '#9c89cc',
-        'marker-size': 'medium',
-        'marker-symbol': 'building'
-      }
-    },
-    {
-      type: 'Feature',
-      geometry: {
-        type: 'Point',
-        coordinates: [-77.00905323028564, 38.88981361419182]
-      },
-      properties: {
-        title: 'U.S. Capitol',
-        'marker-color': '#9c89cc',
-        'marker-size': 'medium',
-        'marker-symbol': 'town-hall'
-      }
-    },
-    {
-      type: 'Feature',
-      geometry: {
-        type: 'LineString',
-        coordinates: [
-          [-77.0366048812866, 38.89873175227713],
-          [-77.03364372253417, 38.89876515143842],
-          [-77.03364372253417, 38.89549195896866],
-          [-77.02982425689697, 38.89549195896866],
-          [-77.02400922775269, 38.89387200688839],
-          [-77.01519012451172, 38.891416957534204],
-          [-77.01521158218382, 38.892068305429156],
-          [-77.00813055038452, 38.892051604275686],
-          [-77.00832366943358, 38.89143365883688],
-          [-77.00818419456482, 38.89082405874451],
-          [-77.00815200805664, 38.88989712255097]
-        ]
-      },
-      properties: {
-        stroke: '#fa946e',
-        'stroke-opacity': 1,
-        'stroke-width': 6
-      }
-    }
-  ]
-}
-
-
-
-// var myLayer = L.mapbox.featureLayer().addTo(map)
-// myLayer.setGeoJSON(geojson)
-
-// map.legendControl.addLegend('<strong>test</strong>')
+mapboxgl.accessToken = 'pk.eyJ1IjoiamF2aWVyY2FyZXkiLCJhIjoiY2ptYjN4aG5pMDEwcjNwbnF1M2twYW91ZSJ9.UITbabUfCeSDBAXMykIMvw'
 
 /**
  * COMPONENT
  */
-export const Map = props => {
-  const {sessionID} = props
+console.log(process.env)
+class Map extends React.Component {
+  constructor(props) {
+    super(props)
+    this.state = {
+      lng: -122.4552940,
+      lat: 37.7665200,
+      zoom: 13
+    }
+  }
 
-  return (
-    <div id="map2">
-      <h3>map-poc-01</h3>
-    </div>
-  )
+  componentDidMount() {
+    const {lng, lat, zoom} = this.state
+    const map = new mapboxgl.Map({
+      container: this.mapContainer,
+      style: 'mapbox://styles/mapbox/streets-v9',
+      center: [lng, lat],
+      zoom,
+      scrollWheelZoom: false,
+      legendControl: {
+        position: 'topright'
+      }
+    })
+
+    map.on('move', () => {
+      const {lng, lat} = map.getCenter()
+
+      this.setState({
+        lng: lng.toFixed(4),
+        lat: lat.toFixed(4),
+        zoom: map.getZoom().toFixed(2)
+      })
+    })
+  }
+
+  render() {
+    const {lng, lat, zoom} = this.state
+
+    return (
+      <div>
+        <div className="inline-block absolute top left mt12 ml12 bg-darken75 color-white z1 py6 px12 round-full txt-s txt-bold">
+          <div>{`Longitude: ${lng} Latitude: ${lat} Zoom: ${zoom}`}</div>
+        </div>
+        <div
+          ref={el => (this.mapContainer = el)}
+          className="absolute top right left bottom"
+        />
+      </div>
+    )
+  }
 }
 
 /**
