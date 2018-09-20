@@ -1,7 +1,7 @@
 {
-  "name": "boilermaker",
+  "name": "map-poc-01",
   "version": "1.0.0",
-  "description": "Some boilerplate code to get you started - get shakin'!",
+  "description": "This project is intended to be a proof of concept to show broadcasting and displaying GPS data in real time. It is pulling boilerplate code from https://github.com/FullstackAcademy/boilermaker.git",
   "engines": {
     "node": ">= 7.0.0"
   },
