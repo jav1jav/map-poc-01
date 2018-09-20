@@ -1,0 +1,20 @@
+{
+  "name": "map-poc-01",
+  "version": "1.0.0",
+  "description": "Proof of concept to show broadcasting and displaying GPS data in real time",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jav1jav/map-poc-01.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jav1jav/map-poc-01/issues"
+  },
+  "homepage": "https://github.com/jav1jav/map-poc-01#readme"
+}
