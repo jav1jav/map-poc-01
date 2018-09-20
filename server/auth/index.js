@@ -42,4 +42,8 @@ router.get('/me', (req, res) => {
   res.json(req.user)
 })
 
+router.get('/session', (req, res) => {
+  res.json(req.sessionID)
+})
+
 router.use('/google', require('./google'))
