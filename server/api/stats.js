@@ -8,6 +8,20 @@ router.get('/', async (req, res, next) => {
       // explicitly select only the id and email fields - even though
       // users' passwords are encrypted, it won't help if we just
       // send everything to anyone who asks!
+      attributes: ['lat', 'lng', 'userId']
+    })
+    res.json(stats)
+  } catch (err) {
+    next(err)
+  }
+})
+
+router.get('/mystats', async (req, res, next) => {
+  const id = req.user.id;
+  console.log('server/api/stats.js | mystats route | user id', id)
+  try {
+    const stats = await Stat.findAll({
+      where: {userId: id},
       attributes: ['lat', 'lng']
     })
     res.json(stats)

@@ -4,18 +4,18 @@ const db = require('../db')
 
 const Stat = db.define('stat', {
   lng: {
-    type: Sequelize.STRING
+    type: Sequelize.FLOAT
     // unique: true,
     // allowNull: false
   },
   lat: {
-    type: Sequelize.STRING,
+    type: Sequelize.FLOAT,
   },
   sessionId: {
     type: Sequelize.STRING
   },
   userId: {
-    type: Sequelize.STRING
+    type: Sequelize.INTEGER
   }
 
 })
