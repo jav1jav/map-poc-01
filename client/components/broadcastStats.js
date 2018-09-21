@@ -27,9 +27,14 @@ const data = [
 ]
 
 
-function sendRunnerStats(lat, lng, userId = 1, shouldBroadcast = true) {
-  data.slice(0, ++counter)
-  shouldBroadcast && broadcaster.emit('sendRunnerStats', lat, lng, userId);
+function sendRunnerStats(shouldBroadcast = true) {
+  const userId = 1
+  console.log('client/components/broadcastStats.js | onClick function | data', data)
+  console.log('client/components/broadcastStats.js | onClick function | counter', counter)
+  console.log('client/components/broadcastStats.js | onClick function | slice', data.slice(counter, counter + 1))
+  const x = data.slice(counter, ++counter)[0]
+  console.log('client/components/broadcastStats.js | onClick function | lng, lat', x[0], x[1])
+  shouldBroadcast && broadcaster.emit('sendRunnerStats', x[0], x[1], userId);
 }
 
 export default function broadcastStats () {

@@ -11,7 +11,7 @@ socket.on('connect', () => {
 
 broadcaster.on('sendRunnerStats', (...payload) => {
   socket.emit('sendRunnerStats', ...payload);
-  console.log('client', ...payload);
+  console.log('client/sockets.js | client broadcast', ...payload);
 })
 
 export default socket
