@@ -49,6 +49,10 @@ class Map extends React.Component {
   }
 
   componentDidMount() {
+    this.setState({
+      coords: this.props.coordinates
+    })
+
     const {lng, lat, zoom} = this.state
     this.map = new mapboxgl.Map({
       container: this.mapContainer,
@@ -102,16 +106,20 @@ class Map extends React.Component {
     })
   }
 
-
   updateLayer2() {
-    //this.map.removeLayer('route' + counter)
     this.setState({
-      coords : data.slice(0, ++counter)
+      coords: data.slice(0, ++counter)
     })
   }
 
-
   render() {
+    if (this.state.coords.length !== this.props.coordinates.length) {
+      this.setState({
+        coords: this.props.coordinates
+      })
+    }
+
+
     console.log('rendering | state', this.state)
     this.map && this.state.coords.length > 0 && this.updateLayer()
 
@@ -148,6 +156,7 @@ class Map extends React.Component {
 const mapState = state => {
   return {
     sessionID: state.sessionID,
+    coordinates: state.stat
   }
 }
 

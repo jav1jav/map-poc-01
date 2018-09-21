@@ -34,7 +34,7 @@ export const gotStat = stat => ({type: GOT_STAT, stat})
 export default function(state = defaultStats, action) {
   switch (action.type) {
     case GOT_STAT:
-      return state.concat(action.stat)
+      return state.concat([action.stat])
     default:
       return state
   }
