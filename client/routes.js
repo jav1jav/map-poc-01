@@ -4,7 +4,8 @@ import {withRouter, Route, Switch} from 'react-router-dom'
 import PropTypes from 'prop-types'
 import {Login, Signup, UserHome, Map} from './components'
 import {me, getSession} from './store'
-import broadcastStats from './components/broadcastStats';
+import broadcastStats from './components/broadcastStats'
+import testLocation from './components/testLocation'
 
 /**
  * COMPONENT
@@ -22,6 +23,7 @@ class Routes extends Component {
         {/* Routes placed here are available to all visitors */}
         <Route path="/login" component={Login} />
         <Route path="/signup" component={Signup} />
+        <Route path="/test" component={testLocation} />
         <Route path="/broadcast" component={broadcastStats} />
         <Route path="/map" component={Map} />
         {isLoggedIn && (

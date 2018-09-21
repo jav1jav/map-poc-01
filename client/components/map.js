@@ -43,7 +43,7 @@ class Map extends React.Component {
     this.state = {
       lng: -122.486052,
       lat: 37.830348,
-      zoom: 13,
+      zoom: 17,
       coords: []
     }
   }
@@ -57,9 +57,8 @@ class Map extends React.Component {
     this.map = new mapboxgl.Map({
       container: this.mapContainer,
       style: 'mapbox://styles/mapbox/streets-v9',
-      center: [lng, lat],
+      center: [-122.42744019999999, 37.7713775],
       zoom,
-      scrollWheelZoom: false,
       legendControl: {
         position: 'topright'
       }

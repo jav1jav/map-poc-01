@@ -29,12 +29,26 @@ const data = [
 
 function sendRunnerStats(shouldBroadcast = true) {
   const userId = 1
-  const lngLat = data.slice(counter, ++counter)[0]
-  shouldBroadcast && broadcaster.emit('sendRunnerStats', lngLat[0], lngLat[1], userId);
+  //const lngLat = data.slice(counter, ++counter)[0]
+  function success(position) {
+    var latitude  = position.coords.latitude;
+    var longitude = position.coords.longitude;
+    shouldBroadcast && broadcaster.emit('sendRunnerStats', longitude, latitude, userId);
+  }
+
+  function error() {
+    console.log("Unable to retrieve your location")
+  }
+  navigator.geolocation.getCurrentPosition(success, error);
 }
 
 export default function broadcastStats () {
   return (
-    <div><button type='submit' onClick={sendRunnerStats}>Send Stats</button></div>
+    <React-fragment>
+    <h1>{navigator.geolocation ? 'geolocation supported' : 'geolocation not supported'}</h1>
+    <div><button type='submit' onClick={sendRunnerStats}>Get Current Position</button></div>
+    <div><button type='submit' onClick={sendRunnerStats}>Start Sharing Location Stats</button></div>
+    <div><button type='submit' onClick={sendRunnerStats}>Stop Sharing Location Stats</button></div>
+    </React-fragment>
   )
 }
