@@ -1,6 +1,7 @@
 import React from 'react'
 
 function geoFindMe() {
+  alert('locating')
   var output = document.getElementById('map')
 
   if (!navigator.geolocation) {
@@ -12,25 +13,26 @@ function geoFindMe() {
     var latitude = position.coords.latitude
     var longitude = position.coords.longitude
 
-    output.innerHTML =
+    output.appendChild(document.createElement('p')).innerHTML =
       '<p>Latitude is ' + latitude + '° <br>Longitude is ' + longitude + '°</p>'
 
-    var img = new Image()
-    img.src =
-      'https://maps.googleapis.com/maps/api/staticmap?center=' +
-      latitude +
-      ',' +
-      longitude +
-      '&zoom=13&size=300x300&sensor=false'
+    // var img = new Image()
+    // img.src =
+    //   'https://maps.googleapis.com/maps/api/staticmap?center=' +
+    //   latitude +
+    //   ',' +
+    //   longitude +
+    //   '&zoom=13&size=300x300&sensor=false'
 
-    output.appendChild(img)
+    //output.appendChild(img)
   }
 
   function error() {
     output.innerHTML = 'Unable to retrieve your location'
   }
 
-  output.innerHTML = '<p>Locating…</p>'
+  output.appendChild(document.createElement('p')).innerHTML = 'Locating'
+
 
   navigator.geolocation.getCurrentPosition(success, error)
 }
@@ -39,8 +41,9 @@ export default function testLocation() {
   return (
     <React-fragment>
       <div>
-        <button onClick={geoFindMe()}>Show my location</button>
+        <button onClick={geoFindMe}>Show my location</button>
       </div>
+      <div id="map" />
     </React-fragment>
   )
 }
