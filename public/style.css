@@ -1,5 +1,7 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto:400,500,700');
+
 body {
-  font-family: sans-serif;
+  font-family: 'Roboto', sans-serif;
 }
 
 a {
@@ -18,4 +20,22 @@ nav a {
 form div {
   margin: 1em;
   display: inline-block;
+}
+
+p {
+  display: block;
+  margin-block-start: 2px;
+  margin-block-end: 2px;
+  margin-inline-start: .3rem;
+  margin-inline-end: .3rem;
+}
+
+button {
+  background-color: #708ca5;
+  color: #fff;
+  font-size: .8rem;
+  padding: .3rem .5rem;
+  margin: .3rem;
+  border-radius: 6px;
+  border: none;
 }

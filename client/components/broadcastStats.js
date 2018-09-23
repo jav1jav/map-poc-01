@@ -4,7 +4,12 @@ export const broadcaster = new EventEmitter()
 
 function updatePageWithText(msg) {
   var output = document.getElementById('map')
-  output.appendChild(document.createElement('p')).innerHTML = msg
+  var previousEntry = output.firstChild
+  var date = new Date(Date.now())
+  output.insertBefore(
+    document.createElement('p'),
+    previousEntry
+  ).innerHTML = `${date.toLocaleTimeString()} ${msg}`
 }
 
 function sendRunnerStats(shouldBroadcast = true) {
@@ -35,26 +40,21 @@ let sharingStats = false
 
 function startSharingStats() {
   alert('sharing stats')
-  updatePageWithText('started sharing stats')
+  updatePageWithText('Started sharing stats.')
   sharingStats = true
   sendRunnerStats()
   shareStatsOnInterval()
 }
 
 function shareStatsOnInterval() {
-  const startTime = Date.now()
-  updatePageWithText('setInterval loop start')
-
   timeoutId = setInterval(sendRunnerStats, 10000, true)
-
-  updatePageWithText('setInterval has been set')
 }
 
 function stopSharingStats() {
   clearTimeout(timeoutId)
   sharingStats = false
   alert('not sharing stats')
-  updatePageWithText('stopped sharing stats')
+  updatePageWithText('Stopped sharing stats.')
 }
 
 export default function broadcastStats() {
@@ -77,9 +77,6 @@ export default function broadcastStats() {
           <button type="submit" onClick={stopSharingStats}>
             Stop Sharing Location Stats
           </button>
-        </div>
-        <div>
-          Share Status:{sharingStats ? `Sharing Stats` : `Not Sharing Stats`}
         </div>
         <div id="map" />
       </React-fragment>
