@@ -5,6 +5,7 @@ import PropTypes from 'prop-types'
 import {Login, Signup, UserHome, Map} from './components'
 import {me, getSession} from './store'
 import broadcastStats from './components/broadcastStats'
+import broadcastFake from './components/broadcastFake'
 import testLocation from './components/testLocation'
 
 /**
@@ -25,6 +26,7 @@ class Routes extends Component {
         <Route path="/signup" component={Signup} />
         <Route path="/test" component={testLocation} />
         <Route path="/broadcast" component={broadcastStats} />
+        <Route path="/broadcastFake" component={broadcastFake} />
         <Route path="/map" component={Map} />
         {isLoggedIn && (
           <Switch>

@@ -35,10 +35,7 @@ class Map extends React.Component {
       style: 'mapbox://styles/mapbox/streets-v9',
       center: [-122.42744019999999, 37.7713775],
       zoom,
-      // containerStyle: {
-      //   height: "100%",
-      //   width: "500px"
-      // }
+
     })
 
     // this.map.on('move', () => {

@@ -1,5 +1,6 @@
 import io from 'socket.io-client'
 import { broadcaster } from './components/broadcastStats'
+import { broadcaster as broadcasterFake } from './components/broadcastFake'
 import store from './store'
 import { gotStat } from './store/stat'
 
@@ -15,6 +16,11 @@ socket.on('sendRunnerStats', function(lng, lat, userId) {
 });
 
 broadcaster.on('sendRunnerStats', (...payload) => {
+  socket.emit('sendRunnerStats', ...payload);
+  console.log('client/sockets.js | client broadcast', ...payload);
+})
+
+broadcasterFake.on('sendRunnerStats', (...payload) => {
   socket.emit('sendRunnerStats', ...payload);
   console.log('client/sockets.js | client broadcast', ...payload);
 })
