@@ -14,51 +14,30 @@ mapboxgl.accessToken =
 class Map extends React.Component {
   map
 
-  // constructor(props) {
-  //   super(props)
-    // this.state = {
-    //   lng: -122.48369693756104,
-    //   lat: 37.83381888486939,
-    //   zoom: 15,
-    //   coords: []
-    // }
-  // }
-
   componentDidMount() {
     const coordinates = this.props.coordinates
     console.log('map.js | cdm | coordinates from props: ', coordinates)
     let lng = -122.48369693756104
     let lat = 37.83381888486939
-    let zoom = 15
     if(coordinates.length > 0) {
        lng = coordinates[coordinates.length-1][0]
        lat = coordinates[coordinates.length-1][1]
-       zoom = 15
     }
+    this.createMap(lng, lat)
+  }
 
-
-    // if(coordinates.length > 0) {
-    //   this.setState({
-    //     lng: coordinates[coordinates.length-1][0],
-    //     lat: coordinates[coordinates.length-1][1],
-    //     zoom: 15,
-    //     coords: coordinates
-    //   })
-    // }
-
-
-    // const {lng, lat, zoom} = this.state
-
+  createMap (lng, lat) {
     this.map = new mapboxgl.Map({
       container: 'map',
       style: 'mapbox://styles/mapbox/streets-v9',
       center: [lng, lat],
-      zoom
+      zoom: 15
     })
-
   }
 
+
   updateLayer() {
+    console.log('map.js | updateLayer | this.props.coordinates ', this.props.coordinates)
     this.map.addLayer({
       id: 'route' + this.props.coordinates.length,
       type: 'line',
@@ -84,24 +63,9 @@ class Map extends React.Component {
     })
   }
 
-  // updateLayer2() {
-  //   this.setState({
-  //     coords: data.slice(0, ++counter)
-  //   })
-  // }
-
   render() {
-    // if (this.state.coords.length !== this.props.coordinates.length) {
-    //   this.setState({
-    //     coords: this.props.coordinates
-    //   })
-    // }
-
-
-    console.log('rendering | props', this.props)
+    console.log('map.js | render | props: ', this.props)
     this.map && this.props.coordinates.length > 0 && this.updateLayer()
-
-    //const {lng, lat, zoom} = this.state
 
     return (
       <div id='map' style={{width: 100+ '%', height: 600 }} />
