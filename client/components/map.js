@@ -19,27 +19,31 @@ class Map extends React.Component {
     console.log('map.js | cdm | coordinates from props: ', coordinates)
     let lng = -122.48369693756104
     let lat = 37.83381888486939
-    if(coordinates.length > 0) {
-       lng = coordinates[coordinates.length-1][0]
-       lat = coordinates[coordinates.length-1][1]
+    if (coordinates.length > 0) {
+      lng = coordinates[coordinates.length - 1][0]
+      lat = coordinates[coordinates.length - 1][1]
     }
     this.createMap(lng, lat)
   }
 
-  createMap (lng, lat) {
+  createMap(lng, lat) {
     this.map = new mapboxgl.Map({
       container: 'map',
-      style: 'mapbox://styles/mapbox/streets-v9',
+      style: 'mapbox://styles/mapbox/streets-v10',
       center: [lng, lat],
-      zoom: 15
+      zoom: 17
     })
   }
 
-
   updateLayer() {
-    console.log('map.js | updateLayer | this.props.coordinates ', this.props.coordinates)
+
+    const coordinates = this.props.coordinates
+    console.log(
+      'map.js | updateLayer | this.props.coordinates ',
+      coordinates
+    )
     this.map.addLayer({
-      id: 'route' + this.props.coordinates.length,
+      id: 'route' + coordinates.length,
       type: 'line',
       source: {
         type: 'geojson',
@@ -48,7 +52,7 @@ class Map extends React.Component {
           properties: {},
           geometry: {
             type: 'LineString',
-            coordinates: this.props.coordinates
+            coordinates: coordinates
           }
         }
       },
@@ -61,15 +65,22 @@ class Map extends React.Component {
         'line-width': 8
       }
     })
+    this.map.flyTo({center: coordinates[coordinates.length-1]});
   }
 
   render() {
     console.log('map.js | render | props: ', this.props)
     this.map && this.props.coordinates.length > 0 && this.updateLayer()
+    // if (this.props.coordinates.length > 0) {
+    //   const coordinates = this.props.coordinates
+    //   const lng = coordinates[coordinates.length - 1][0]
+    //   const lat = coordinates[coordinates.length - 1][1]
 
-    return (
-      <div id='map' style={{width: 100+ '%', height: 600 }} />
-    )
+    //   this.createMap(lng, lat)
+    //   this.updateLayer()
+    // }
+
+    return <div id="map" style={{width: 100 + '%', height: 600}} />
   }
 }
 
