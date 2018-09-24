@@ -17,40 +17,38 @@ class Map extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      lng: -122.486052,
-      lat: 37.830348,
-      zoom: 17,
+      lng: -122.48369693756104,
+      lat: 37.83381888486939,
+      zoom: 15,
       coords: []
     }
   }
 
   componentDidMount() {
-    this.setState({
-      coords: this.props.coordinates
-    })
+    const coordinates = this.props.coordinates
+    console.log('map.js | cdm | coordinates from props: ', coordinates)
+    if(coordinates.length > 0) {
+      this.setState({
+        lng: coordinates[coordinates.length-1][0],
+        lat: coordinates[coordinates.length-1][1],
+        zoom: 15,
+        coords: coordinates
+      })
+    }
+
 
     const {lng, lat, zoom} = this.state
     this.map = new mapboxgl.Map({
       container: 'map',
       style: 'mapbox://styles/mapbox/streets-v9',
-      center: [-122.42744019999999, 37.7713775],
+      center: [lng, lat],
       zoom,
 
     })
 
-    // this.map.on('move', () => {
-    //   const {lng, lat} = map.getCenter()
-
-    //   this.setState({
-    //     lng: lng.toFixed(4),
-    //     lat: lat.toFixed(4),
-    //     zoom: this.map.getZoom().toFixed(2)
-    //   })
+    // this.map.on('load', () => {
+    //   this.updateLayer()
     // })
-
-    this.map.on('load', () => {
-      this.updateLayer()
-    })
   }
 
   updateLayer() {
@@ -79,11 +77,11 @@ class Map extends React.Component {
     })
   }
 
-  updateLayer2() {
-    this.setState({
-      coords: data.slice(0, ++counter)
-    })
-  }
+  // updateLayer2() {
+  //   this.setState({
+  //     coords: data.slice(0, ++counter)
+  //   })
+  // }
 
   render() {
     if (this.state.coords.length !== this.props.coordinates.length) {
@@ -96,7 +94,7 @@ class Map extends React.Component {
     console.log('rendering | state', this.state)
     this.map && this.state.coords.length > 0 && this.updateLayer()
 
-    const {lng, lat, zoom} = this.state
+    //const {lng, lat, zoom} = this.state
 
     return (
       <div id='map' style={{width: 100+ '%', height: 600 }} />
