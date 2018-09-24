@@ -46,9 +46,6 @@ class Map extends React.Component {
 
     })
 
-    // this.map.on('load', () => {
-    //   this.updateLayer()
-    // })
   }
 
   updateLayer() {
