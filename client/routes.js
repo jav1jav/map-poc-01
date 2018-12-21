@@ -6,7 +6,9 @@ import {Login, Signup, UserHome, Map} from './components'
 import {me, getSession} from './store'
 import broadcastStats from './components/broadcastStats'
 import broadcastFake from './components/broadcastFake'
+import broadcastFake2 from './components/broadcastFake2'
 import testLocation from './components/testLocation'
+import graphPage from './components/graph'
 
 /**
  * COMPONENT
@@ -27,6 +29,8 @@ class Routes extends Component {
         <Route path="/test" component={testLocation} />
         <Route path="/broadcast" component={broadcastStats} />
         <Route path="/broadcastFake" component={broadcastFake} />
+        <Route path="/broadcastFake2" component={broadcastFake2} />
+        <Route path="/graphs" component={graphPage} />
         <Route path="/map" component={Map} />
         {isLoggedIn && (
           <Switch>
