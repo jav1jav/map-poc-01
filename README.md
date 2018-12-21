@@ -2,6 +2,9 @@
 # map-poc-01
 This project is intended to be a proof of concept to show broadcasting and displaying GPS data in real time. It is pulling boilerplate code from https://github.com/FullstackAcademy/boilermaker.git
 
+A version of the app is deployed to https://map-poc-01.herokuapp.com/test
+
+----
 
 # Boilermaker
 
