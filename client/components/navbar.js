@@ -18,6 +18,8 @@ const Navbar = ({handleClick, isLoggedIn}) => (
           <Link to="/test">Test Location</Link>
           <Link to="/broadcast">Broadcast Stats</Link>
           <Link to="/broadcastFake">Broadcast Fake Stats</Link>
+          <Link to="/broadcastFake2">Fake Track Workout</Link>
+          <Link to="/graphs">Graphs</Link>
           <Link to="/map">Map</Link>
         </div>
       ) : (
@@ -28,6 +30,8 @@ const Navbar = ({handleClick, isLoggedIn}) => (
           <Link to="/test">Test Location</Link>
           <Link to="/broadcast">Broadcast Stats</Link>
           <Link to="/broadcastFake">Broadcast Fake Stats</Link>
+          <Link to="/broadcastFakes2">Fake Track Workout</Link>
+          <Link to="/graphs">Graphs</Link>
           <Link to="/map">Map</Link>
         </div>
       )}
