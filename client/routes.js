@@ -2,7 +2,7 @@ import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import {withRouter, Route, Switch} from 'react-router-dom'
 import PropTypes from 'prop-types'
-import {Login, Signup, UserHome, Map} from './components'
+import {Login, Signup, UserHome, Map, Welcome} from './components'
 import {me, getSession} from './store'
 import broadcastStats from './components/broadcastStats'
 import broadcastFake from './components/broadcastFake'
@@ -32,14 +32,22 @@ class Routes extends Component {
         <Route path="/broadcastFake2" component={broadcastFake2} />
         <Route path="/graphs" component={graphPage} />
         <Route path="/map" component={Map} />
+        <Route path="/welcome" component={Welcome} />
+        {/* <Route path="/" component={Welcome} /> */}
         {isLoggedIn && (
           <Switch>
             {/* Routes placed here are only available after logging in */}
             <Route path="/home" component={UserHome} />
+            <Route path="/" component={UserHome} />
+          </Switch>
+        )}
+        {!isLoggedIn && (
+          <Switch>
+            <Route path="/" component={Welcome} />
           </Switch>
         )}
         {/* Displays our Login component as a fallback */}
-        <Route component={Login} />
+        {/* <Route component={Welcome} /> */}
       </Switch>
     )
   }
