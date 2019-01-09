@@ -6,7 +6,7 @@ import Routes from './routes'
 const App = () => {
   return (
     <div>
-      {/* <Navbar /> */}
+      <Navbar />
       <h1>Welcome to The Runner's Coach Dashboard</h1>
       <div>This is a proof of concept app for a dashboard to display real time running statistics to a coach. To see all features of the POC, use one browser window to log in as an athelete and another incognito window to log in as a coach.</div>
       <div>There are 3 accounts:</div>
