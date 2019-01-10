@@ -26,15 +26,18 @@ class Routes extends Component {
     return (
       <Switch>
         {/* Routes placed here are available to all visitors */}
+
+        {/* <Route path="/signup" component={Signup} /> */}
+        {/* <Route path="/test" component={testLocation} /> */}
+        {/* <Route path="/broadcastFake" component={broadcastFake} /> */}
+        {/* <Route path="/graphs" component={graphPage} /> */}
+
         <Route path="/login" component={Login} />
-        <Route path="/signup" component={Signup} />
-        <Route path="/test" component={testLocation} />
-        <Route path="/broadcast" component={broadcastStats} />
-        <Route path="/broadcastFake" component={broadcastFake} />
-        <Route path="/broadcastFake2" component={broadcastFake2} />
-        <Route path="/graphs" component={graphPage} />
-        <Route path="/map" component={Map} />
+        <Route path="/user/1" component={broadcastStats} />
+        <Route path="/user/2" component={broadcastFake2} />
+        <Route path="/user/3" component={Map} />
         <Route path="/welcome" component={Welcome} />
+
         {/* <Route path="/" component={Welcome} /> */}
         {isLoggedIn && (
           <Switch>
