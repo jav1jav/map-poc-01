@@ -1,9 +1,14 @@
 import React from 'react'
 import {EventEmitter} from 'events'
 export const broadcaster = new EventEmitter()
+import Map from './map'
+import store from '../store'
+import { gotStat } from '../store/stat'
+
+
 
 function updatePageWithText(msg) {
-  var output = document.getElementById('map')
+  var output = document.getElementById('log')
   var previousEntry = output.firstChild
   var date = new Date(Date.now())
   output.insertBefore(
@@ -25,6 +30,7 @@ function sendRunnerStats(shouldBroadcast = true) {
     var longitude = position.coords.longitude
     shouldBroadcast &&
       broadcaster.emit('sendRunnerStats', longitude, latitude, userId)
+      store.dispatch(gotStat([longitude, latitude]))
     updatePageWithText(`lat: ${latitude} lng: ${longitude}`)
   }
 
@@ -32,6 +38,7 @@ function sendRunnerStats(shouldBroadcast = true) {
     console.log('Unable to retrieve your location')
     updatePageWithText(`Unable to retrieve your location`)
   }
+
   navigator.geolocation.getCurrentPosition(success, error)
 }
 
@@ -47,7 +54,7 @@ function startSharingStats() {
 }
 
 function shareStatsOnInterval() {
-  timeoutId = setInterval(sendRunnerStats, 10000, true)
+  timeoutId = setInterval(sendRunnerStats, 4000, true)
 }
 
 function stopSharingStats() {
@@ -63,6 +70,7 @@ export default function broadcastStats() {
   } else {
     return (
       <React-fragment>
+        <Map />
         <div>
           <button type="submit" onClick={sendRunnerStats}>
             Send Current Position
@@ -78,7 +86,7 @@ export default function broadcastStats() {
             Stop Sharing Location Stats
           </button>
         </div>
-        <div id="map" />
+        <div id="log" />
       </React-fragment>
     )
   }

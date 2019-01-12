@@ -80,7 +80,7 @@ class Map extends React.Component {
     //   this.updateLayer()
     // }
 
-    return <div id="map" style={{width: 100 + '%', height: 600}} />
+    return <div id="map" style={{width: 100 + '%', height: 400}} />
   }
 }
 

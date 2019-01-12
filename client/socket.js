@@ -11,7 +11,7 @@ socket.on('connect', () => {
   console.log('Connected!')
 })
 
-socket.on('sendRunnerStats', function(lng, lat, userId) {
+socket.on('forwardRunnerStats', function(lng, lat, userId) {
   const stat = [lng, lat]
   store.dispatch(gotStat(stat))
 });
