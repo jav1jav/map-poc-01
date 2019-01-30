@@ -1,17 +1,18 @@
 import React from 'react'
 import {EventEmitter} from 'events'
 export const broadcaster = new EventEmitter()
+import Map from './map'
+import store from '../store'
+import {gotStat} from '../store/stat'
+
 const dataIn = require('./data.json')
 
-const data = dataIn.trkpt.map(el =>
-  [el.lon, el.lat]
-)
+const data = dataIn.trkpt.map(el => [el.lon, el.lat])
 
 let counter = 0
 
-
 function updatePageWithText(msg) {
-  var output = document.getElementById('map')
+  var output = document.getElementById('log')
   var previousEntry = output.firstChild
   var date = new Date(Date.now())
   output.insertBefore(
@@ -21,7 +22,7 @@ function updatePageWithText(msg) {
 }
 
 function sendRunnerStats(shouldBroadcast = true) {
-  const userId = 1
+  const userId = 2
   let latitude = null
   let longitude = null
 
@@ -34,15 +35,19 @@ function sendRunnerStats(shouldBroadcast = true) {
     longitude = data[counter++][0]
   }
 
-  shouldBroadcast && broadcaster.emit('sendRunnerStats', longitude, latitude, userId)
+  shouldBroadcast &&
+    broadcaster.emit('sendRunnerStats', longitude, latitude, userId)
+  store.dispatch(gotStat([longitude, latitude]))
   updatePageWithText(`lat: ${latitude} lng: ${longitude}`)
 }
 
 let timeoutId = null
+// let sharingStats = false
 
 function startSharingStats() {
   alert('sharing stats')
   updatePageWithText('Started sharing stats.')
+  // sharingStats = true
   sendRunnerStats(true)
   shareStatsOnInterval()
 }
@@ -53,6 +58,7 @@ function shareStatsOnInterval() {
 
 function stopSharingStats() {
   clearTimeout(timeoutId)
+  // sharingStats = false
   alert('not sharing stats')
   updatePageWithText('Stopped sharing stats.')
 }
@@ -63,6 +69,7 @@ export default function broadcastStats() {
   } else {
     return (
       <React-fragment>
+        <Map />
         <div>
           <button type="submit" onClick={sendRunnerStats}>
             Send Current Position
@@ -78,7 +85,7 @@ export default function broadcastStats() {
             Stop Sharing Location Stats
           </button>
         </div>
-        <div id="map" />
+        <div id="log" />
       </React-fragment>
     )
   }

@@ -3,9 +3,7 @@ import {EventEmitter} from 'events'
 export const broadcaster = new EventEmitter()
 import Map from './map'
 import store from '../store'
-import { gotStat } from '../store/stat'
-
-
+import {gotStat} from '../store/stat'
 
 function updatePageWithText(msg) {
   var output = document.getElementById('log')
@@ -30,7 +28,7 @@ function sendRunnerStats(shouldBroadcast = true) {
     var longitude = position.coords.longitude
     shouldBroadcast &&
       broadcaster.emit('sendRunnerStats', longitude, latitude, userId)
-      store.dispatch(gotStat([longitude, latitude]))
+    store.dispatch(gotStat([longitude, latitude]))
     updatePageWithText(`lat: ${latitude} lng: ${longitude}`)
   }
 
@@ -43,12 +41,12 @@ function sendRunnerStats(shouldBroadcast = true) {
 }
 
 let timeoutId = null
-let sharingStats = false
+// let sharingStats = false
 
 function startSharingStats() {
   alert('sharing stats')
   updatePageWithText('Started sharing stats.')
-  sharingStats = true
+  // sharingStats = true
   sendRunnerStats()
   shareStatsOnInterval()
 }
@@ -59,7 +57,7 @@ function shareStatsOnInterval() {
 
 function stopSharingStats() {
   clearTimeout(timeoutId)
-  sharingStats = false
+  // sharingStats = false
   alert('not sharing stats')
   updatePageWithText('Stopped sharing stats.')
 }
