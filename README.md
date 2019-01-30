@@ -6,6 +6,23 @@ A version of the app is deployed to https://map-poc-01.herokuapp.com/test
 
 ----
 
+20190129
+
+I'm working on this project again.
+
+I have redone the home page to direct the viewer through an experience to understand the functionality I built during the FullStack hackathon. The viewer can login as one of 3 users: realathlete, fakeathlete, and coach.
+
+ABOUT THE CODE
+
+client/components/welcome.js is the home page with the instructions
+
+client/components/auth-form.js, form to login, the route is https://localhost:8080/login. the auth-form uses React to generate the form and then Redux connect mapDispatchToProps link the form to the handleSubmit method - which dispatches 'auth' method
+
+/client/store/user.js exports 'auth' method which makes the axios post to '/auth/ and then if 'res' gets back a user then history.push redirects to the route '/user/userId' which corresponds to fakeathlete, realathlete or coach.
+
+----
+
+
 # Boilermaker
 
 _Good things come in pairs_
