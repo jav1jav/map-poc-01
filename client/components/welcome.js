@@ -5,36 +5,24 @@ const Welcome = () => {
     <div>
       <h1>Welcome to The Runner's Coach Dashboard</h1>
       <div>
-        This is a proof of concept app for a dashboard to display real time
-        running statistics to a coach. To see all features of the POC, use one
-        browser window to log in as an athelete and another incognito window to
-        log in as a coach.
+        This is a proof of concept app for a dashboard to display real time running statistics to a coach. To see all features of the POC, use one browser window to log in as an athelete and another incognito window to log in as a coach.
       </div>
       <div>There are 3 accounts:</div>
       <ol>
-        <h3>
-          <li>RealAthlete (username: realathlete@email.com, password: 123)</li>
-        </h3>
-        <ul>
-          <li>
-            The RealAthlete experience shows a runner's experience using the
-            app, as seen on a mobile phone. From the runner's UI a user can see
-            their location on a map and click a button to start a workout. After
-            starting a workout on a mobile phone, the phone will broadcast the
-            phone's location data back to the server. The idea is that the phone
-            would send other running data (speed, stride rate, etc...), but for
-            the proof of concept only location data is sent.
-          </li>
-        </ul>
         <h3>
           <li>FakeAthelete (username: fakeathlete@email.com, password: 123)</li>
         </h3>
         <ul>
           <li>
-            FakeAthlete experience, like the RealAthelete's, shows the runner's
-            UI, but generates and broadcasts fake data. Click the start button
-            to automatically send running statistics for a previously executed
-            track workout.{' '}
+            The FakeAthlete account shows a runner's experience using the app, best seen on a mobile device. A logged-in runner is presented a map showing their location and a set of statistics about their run (heart rate, stride rate, pace, etc...). Click the start button to start a workout and the app automatically generates fake running statistics for a previously executed track workout.
+          </li>
+        </ul>
+        <h3>
+          <li>RealAthlete (username: realathlete@email.com, password: 123)</li>
+        </h3>
+        <ul>
+          <li>
+            The RealAthlete account shows the runner's experience but instead of generating fake statistics, the app will send the actual location of the device. (You must respond positively to the prompt from the browser to allow the app to access location data). Log in as the RealAthlete on a mobile device and click the start button and begin walking to generate location data.
           </li>
         </ul>
         <h3>
