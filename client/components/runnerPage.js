@@ -1,5 +1,5 @@
 import React from 'react'
-import {updatePageWithText, sendRunnerStats, sendRealRunnerStats, sendFakeRunnerStats} from './runnerMapUtils'
+import {updatePageWithText, sendRunnerStats} from './runnerMapUtils'
 import Map from './map'
 
 
@@ -19,7 +19,6 @@ function stopSharingStats() {
 }
 
 export default function runnerPage(props) {
-  console.log('runnerPage.js | props: ', props)
   if (!navigator.geolocation) {
     return <div>'geolocation not supported'</div>
   } else {

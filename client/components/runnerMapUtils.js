@@ -29,7 +29,7 @@ const dataIn = require('./data.json')
 const data = dataIn.trkpt.map(el => [el.lon, el.lat])
 
 let counter = 0
-export function sendFakeRunnerStats(shouldBroadcast = true) {
+function sendFakeRunnerStats(shouldBroadcast = true) {
   const userId = 2
   let latitude = null
   let longitude = null
@@ -53,7 +53,7 @@ export function sendFakeRunnerStats(shouldBroadcast = true) {
 // * * * sendRealRunnerStats * * *
 //Function that broadcasts fake data from the data.json file
 
-export function sendRealRunnerStats(shouldBroadcast = true) {
+function sendRealRunnerStats(shouldBroadcast = true) {
   const userId = 1
 
   if (!navigator.geolocation) {
@@ -79,6 +79,5 @@ export function sendRealRunnerStats(shouldBroadcast = true) {
 }
 
 export function sendRunnerStats(id) {
-  console.log('runnerMapUtils | sendRunnerStats | id: ', id)
   return id === 2 ? sendFakeRunnerStats() : sendRealRunnerStats()
 }
