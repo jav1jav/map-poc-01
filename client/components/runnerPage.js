@@ -1,24 +1,15 @@
 import React from 'react'
-import {sendRunnerStats} from './runnerMapUtils'
+import {updatePageWithText, sendRunnerStats, sendRealRunnerStats, sendFakeRunnerStats} from './runnerMapUtils'
 import Map from './map'
 
-function updatePageWithText(msg) {
-  var output = document.getElementById('log')
-  var previousEntry = output.firstChild
-  var date = new Date(Date.now())
-  output.insertBefore(
-    document.createElement('p'),
-    previousEntry
-  ).innerHTML = `${date.toLocaleTimeString()} ${msg}`
-}
 
 let timeoutId = null
 
-function startSharingStats() {
+function startSharingStats(id) {
   alert('sharing stats')
   updatePageWithText('Started sharing stats.')
-  sendRunnerStats(true)
-  timeoutId = setInterval(sendRunnerStats, 3000, true)
+  sendRunnerStats(id)
+  timeoutId = setInterval(sendRunnerStats, 3000, id)
 }
 
 function stopSharingStats() {
@@ -27,7 +18,8 @@ function stopSharingStats() {
   updatePageWithText('Stopped sharing stats.')
 }
 
-export default function runnerView() {
+export default function runnerPage(props) {
+  console.log('runnerPage.js | props: ', props)
   if (!navigator.geolocation) {
     return <div>'geolocation not supported'</div>
   } else {
@@ -35,12 +27,12 @@ export default function runnerView() {
       <React-fragment>
         <Map />
         <div>
-          <button type="submit" onClick={sendRunnerStats}>
+          <button type="submit" onClick={() => sendRunnerStats(props.id)}>
             Send Current Position
           </button>
         </div>
         <div>
-          <button type="submit" onClick={startSharingStats}>
+          <button type="submit" onClick={() => startSharingStats(props.id)}>
             Start Sharing Location Stats
           </button>
         </div>

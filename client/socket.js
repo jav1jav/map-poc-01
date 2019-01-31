@@ -18,18 +18,18 @@ socket.on('forwardRunnerStats', function(lng, lat, userId) {
 
 broadcaster.on('sendRunnerStats', (...payload) => {
   socket.emit('sendRunnerStats', ...payload);
-  console.log('client/sockets.js | client broadcast', ...payload);
+  // console.log('client/sockets.js | client broadcast', ...payload);
 })
 
 broadcasterFake.on('sendRunnerStats', (...payload) => {
   socket.emit('sendRunnerStats', ...payload);
-  console.log('client/sockets.js | client broadcast', ...payload);
+  // console.log('client/sockets.js | client broadcast', ...payload);
 })
 
 
 broadcasterFake2.on('sendRunnerStats', (...payload) => {
   socket.emit('sendRunnerStats', ...payload);
-  console.log('client/sockets.js | client broadcast', ...payload);
+  // console.log('client/sockets.js | client broadcast', ...payload);
 })
 
 export default socket

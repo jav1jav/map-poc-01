@@ -16,7 +16,7 @@ class Map extends React.Component {
 
   componentDidMount() {
     const coordinates = this.props.coordinates
-    console.log('map.js | cdm | coordinates from props: ', coordinates)
+    // console.log('map.js | cdm | coordinates from props: ', coordinates)
     let lng = -122.48369693756104
     let lat = 37.83381888486939
     if (coordinates.length > 0) {
@@ -38,10 +38,10 @@ class Map extends React.Component {
   updateLayer() {
 
     const coordinates = this.props.coordinates
-    console.log(
-      'map.js | updateLayer | this.props.coordinates ',
-      coordinates
-    )
+    // console.log(
+    //   'map.js | updateLayer | this.props.coordinates ',
+    //   coordinates
+    // )
     this.map.addLayer({
       id: 'route' + coordinates.length,
       type: 'line',
@@ -69,7 +69,7 @@ class Map extends React.Component {
   }
 
   render() {
-    console.log('map.js | render | props: ', this.props)
+    // console.log('map.js | render | props: ', this.props)
     this.map && this.props.coordinates.length > 0 && this.updateLayer()
     // if (this.props.coordinates.length > 0) {
     //   const coordinates = this.props.coordinates
