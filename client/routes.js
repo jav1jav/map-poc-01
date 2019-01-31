@@ -20,8 +20,8 @@ class Routes extends Component {
 
   render() {
     const {isLoggedIn} = this.props
-    console.log('routes.js | this: ', this)
-    console.log('routes.js | this.props: ', this.props)
+    // console.log('routes.js | this: ', this)
+    // console.log('routes.js | this.props: ', this.props)
 
     return (
       <Switch>
@@ -33,9 +33,6 @@ class Routes extends Component {
         {/* <Route path="/graphs" component={graphPage} /> */}
 
         <Route path="/login" component={Login} />
-        <Route path="/user/1" component={broadcastStats} />
-        <Route path="/user/2" component={RunnerPage} />
-        <Route path="/user/3" component={Map} />
         <Route path="/welcome" component={Welcome} />
 
         {/* <Route path="/" component={Welcome} /> */}
@@ -43,6 +40,8 @@ class Routes extends Component {
           <Switch>
             {/* Routes placed here are only available after logging in */}
             <Route path="/home" component={UserHome} />
+            <Route path="/user" component={UserHome} />
+            <Route path="/coach" component={Map} />
             <Route component={UserHome} />
           </Switch>
         )}

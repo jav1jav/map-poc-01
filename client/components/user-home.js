@@ -17,8 +17,11 @@ export const UserHome = props => {
       <button type="submit" onClick={handleClick}>
         Logout
       </button>
-
-      <RunnerPage />
+      {id === 3 ?
+        <div>Coach Dashboard</div>
+        :
+        <RunnerPage id={id} />
+      }
     </div>
   )
 }

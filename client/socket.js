@@ -1,7 +1,7 @@
 import io from 'socket.io-client'
 import { broadcaster } from './components/broadcastStats'
 import { broadcaster as broadcasterFake } from './components/broadcastFake'
-import { broadcaster as broadcasterFake2 } from './components/runnerPage'
+import { broadcaster as broadcasterFake2 } from './components/runnerMapUtils'
 import store from './store'
 import { gotStat } from './store/stat'
 
