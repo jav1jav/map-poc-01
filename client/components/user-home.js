@@ -2,19 +2,23 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import {connect} from 'react-redux'
 import {logout} from '../store'
+import RunnerPage from './runnerPage'
 
 /**
  * COMPONENT
  */
 export const UserHome = props => {
-  const {email, handleClick} = props
+  const {email, id, handleClick} = props
 
   return (
     <div>
-      <h3>Welcome, {email}</h3>
-      <a href="#" onClick={handleClick}>
-            Logout
-          </a>
+      <h3>User: {email + ', ID: ' + id}</h3>
+
+      <button type="submit" onClick={handleClick}>
+        Logout
+      </button>
+
+      <RunnerPage />
     </div>
   )
 }
@@ -24,7 +28,8 @@ export const UserHome = props => {
  */
 const mapState = state => {
   return {
-    email: state.user.email
+    email: state.user.email,
+    id: state.user.id
   }
 }
 

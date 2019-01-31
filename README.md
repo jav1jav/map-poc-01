@@ -24,7 +24,7 @@ client/components/auth-form.js, form to login, the route is https://localhost:80
 
         <Route path="/login" component={Login} />
         <Route path="/user/1" component={broadcastStats} /> //realathlete - broadcast location data from a browser on a mobile device
-        <Route path="/user/2" component={broadcastFake2} /> //fakeathlete - broadcast fake running data
+        <Route path="/user/2" component={runnerPage} /> //fakeathlete - broadcast fake running data
         <Route path="/user/3" component={Map} /> // coach - view the athlete data
         <Route path="/welcome" component={Welcome} />
 

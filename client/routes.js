@@ -6,7 +6,7 @@ import {Login, Signup, UserHome, Map, Welcome} from './components'
 import {me, getSession} from './store'
 import broadcastStats from './components/broadcastStats'
 import broadcastFake from './components/broadcastFake'
-import broadcastFake2 from './components/broadcastFake2'
+import RunnerPage from './components/runnerPage'
 import testLocation from './components/testLocation'
 import graphPage from './components/graph'
 
@@ -34,7 +34,7 @@ class Routes extends Component {
 
         <Route path="/login" component={Login} />
         <Route path="/user/1" component={broadcastStats} />
-        <Route path="/user/2" component={broadcastFake2} />
+        <Route path="/user/2" component={RunnerPage} />
         <Route path="/user/3" component={Map} />
         <Route path="/welcome" component={Welcome} />
 

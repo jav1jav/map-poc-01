@@ -63,7 +63,7 @@ function stopSharingStats() {
   updatePageWithText('Stopped sharing stats.')
 }
 
-export default function broadcastStats() {
+export default function runnerView() {
   if (!navigator.geolocation) {
     return <div>'geolocation not supported'</div>
   } else {

@@ -1,4 +1,5 @@
 import React from 'react'
+import Login from './auth-form'
 
 const Welcome = () => {
   return (
@@ -22,7 +23,7 @@ const Welcome = () => {
         </h3>
         <ul>
           <li>
-            The RealAthlete account shows the runner's experience but instead of generating fake statistics, the app will send the actual location of the device. (You must respond positively to the prompt from the browser to allow the app to access location data). Log in as the RealAthlete on a mobile device and click the start button and begin walking to generate location data.
+            The RealAthlete account shows the runner's experience but instead of generating fake statistics, the app will send the actual location of the device. (You must respond positively to the prompt from the browser to allow the app to access location data). Log in as the RealAthlete on a mobile device, click the start button and begin walking to generate location data.
           </li>
         </ul>
         <h3>
