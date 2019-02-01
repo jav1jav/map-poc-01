@@ -27,26 +27,43 @@ export function updatePageWithText(msg) {
 
 const dataIn = require('./data.json')
 const data = dataIn.trkpt.map(el => [el.lon, el.lat])
+const dataObj = dataIn.trkpt.map(el => {
+  let obj = {}
+  obj.lon = el.lon
+  obj.lat = el.lat
+  obj.ele = el.ele
+  obj.time = el.time
+  obj.hr = el.extensions.TrackPointExtension.hr
+  obj.cad = el.extensions.TrackPointExtension.cad
+  return obj
+})
 
 let counter = 0
 function sendFakeRunnerStats(shouldBroadcast = true) {
   const userId = 2
   let latitude = null
   let longitude = null
+  let xxx = null
+  let yyy = null
 
   if (counter < data.length) {
     latitude = data[counter][1]
+    xxx = dataObj[counter].time
+    yyy = dataObj[counter].cad
     longitude = data[counter++][0]
+
   } else {
     counter = 0
     latitude = data[counter][1]
+    xxx = dataObj[counter].time
+    yyy = dataObj[counter].cad
     longitude = data[counter++][0]
   }
 
   shouldBroadcast &&
     broadcaster.emit('sendRunnerStats', longitude, latitude, userId)
   store.dispatch(gotStat([longitude, latitude]))
-  updatePageWithText(`lat: ${latitude} lng: ${longitude}`)
+  updatePageWithText(`lat: ${latitude} lng: ${longitude} time: ${xxx} cad: ${yyy}`)
 }
 
 
