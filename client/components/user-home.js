@@ -2,7 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import {connect} from 'react-redux'
 import {logout} from '../store'
-import RunnerPage from './runnerPage'
+import {RunnerPage, CoachPage} from '.'
 
 /**
  * COMPONENT
@@ -18,7 +18,7 @@ export const UserHome = props => {
         Logout
       </button>
       {id === 3 ?
-        <div>Coach Dashboard</div>
+        <CoachPage id={id} />
         :
         <RunnerPage id={id} />
       }

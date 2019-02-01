@@ -78,6 +78,10 @@ function sendRealRunnerStats(shouldBroadcast = true) {
   navigator.geolocation.getCurrentPosition(success, error)
 }
 
+// * * * sendRunnerStats * * *
+//Function that is exported and used in runnerPage that takes an ID and
+//then decides to send stats for fake user or real user
+
 export function sendRunnerStats(id) {
   return id === 2 ? sendFakeRunnerStats() : sendRealRunnerStats()
 }
