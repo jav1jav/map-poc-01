@@ -16,20 +16,21 @@ class Map extends React.Component {
 
   componentDidMount() {
     const stats = this.props.stats
+    const zoomVal = 17
     if (stats.length > 0) {
       const lastStat = stats[stats.length - 1]
-      this.createMap(lastStat.lon, lastStat.lat)
+      this.createMap(lastStat.lon, lastStat.lat, zoomVal)
     } else {
-      this.createMap(-122.48369693756104, 37.83381888486939)
+      this.createMap(-122.48369693756104, 37.83381888486939, zoomVal)
     }
   }
 
-  createMap(lon, lat) {
+  createMap(lon, lat, zoom) {
     this.map = new mapboxgl.Map({
       container: 'map',
       style: 'mapbox://styles/mapbox/streets-v10',
       center: [lon, lat],
-      zoom: 17
+      zoom: zoom
     })
   }
 
