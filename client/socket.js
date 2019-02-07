@@ -10,9 +10,9 @@ socket.on('connect', () => {
 })
 
 socket.on('forwardRunnerStats', function(...payload) {
-  console.log('client/socket.js | payload for forwardRunnerStats:', payload)
+  // console.log('client/socket.js | payload for forwardRunnerStats:', payload)
   const stat = convertStatsArrayToObj(payload)
-  console.log('client/socket.js | object created from convert function:', stat)
+  // console.log('client/socket.js | object created from convert function:', stat)
   store.dispatch(gotStat(stat))
 });
 
