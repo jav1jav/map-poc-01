@@ -1,7 +1,5 @@
 import io from 'socket.io-client'
-import { broadcaster } from './components/broadcastStats'
-import { broadcaster as broadcasterFake } from './components/broadcastFake'
-import { broadcaster as broadcasterFake2 } from './components/broadcastFake2'
+import { broadcaster, convertStatsArrayToObj } from './components/runnerMapUtils'
 import store from './store'
 import { gotStat } from './store/stat'
 
@@ -11,25 +9,15 @@ socket.on('connect', () => {
   console.log('Connected!')
 })
 
-socket.on('sendRunnerStats', function(lng, lat, userId) {
-  const stat = [lng, lat]
+socket.on('forwardRunnerStats', function(...payload) {
+  // console.log('client/socket.js | payload for forwardRunnerStats:', payload)
+  const stat = convertStatsArrayToObj(payload)
+  // console.log('client/socket.js | object created from convert function:', stat)
   store.dispatch(gotStat(stat))
 });
 
 broadcaster.on('sendRunnerStats', (...payload) => {
   socket.emit('sendRunnerStats', ...payload);
-  console.log('client/sockets.js | client broadcast', ...payload);
-})
-
-broadcasterFake.on('sendRunnerStats', (...payload) => {
-  socket.emit('sendRunnerStats', ...payload);
-  console.log('client/sockets.js | client broadcast', ...payload);
-})
-
-
-broadcasterFake2.on('sendRunnerStats', (...payload) => {
-  socket.emit('sendRunnerStats', ...payload);
-  console.log('client/sockets.js | client broadcast', ...payload);
 })
 
 export default socket

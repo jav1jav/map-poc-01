@@ -9,6 +9,11 @@ const GOT_STAT = 'GOT_STAT'
  * INITIAL STATE
  */
 const defaultStats = []
+const defaultLastStat = {}
+const initialState = {
+  stats: defaultStats,
+  lastStat: defaultLastStat
+}
 
 /**
  * ACTION CREATORS
@@ -31,10 +36,13 @@ export const gotStat = stat => ({type: GOT_STAT, stat})
 /**
  * REDUCER
  */
-export default function(state = defaultStats, action) {
+export default function(state = initialState, action) {
   switch (action.type) {
     case GOT_STAT:
-      return state.concat([action.stat])
+      return { ...state,
+        stats: state.stats.concat([action.stat]),
+        lastStat: action.stat
+      }
     default:
       return state
   }

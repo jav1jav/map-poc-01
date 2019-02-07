@@ -15,33 +15,28 @@ class Map extends React.Component {
   map
 
   componentDidMount() {
-    const coordinates = this.props.coordinates
-    console.log('map.js | cdm | coordinates from props: ', coordinates)
-    let lng = -122.48369693756104
-    let lat = 37.83381888486939
-    if (coordinates.length > 0) {
-      lng = coordinates[coordinates.length - 1][0]
-      lat = coordinates[coordinates.length - 1][1]
+    const stats = this.props.stats
+    const zoomVal = 17
+    if (stats.length > 0) {
+      const lastStat = stats[stats.length - 1]
+      this.createMap(lastStat.lon, lastStat.lat, zoomVal)
+    } else {
+      this.createMap(-122.48369693756104, 37.83381888486939, zoomVal)
     }
-    this.createMap(lng, lat)
   }
 
-  createMap(lng, lat) {
+  createMap(lon, lat, zoom) {
     this.map = new mapboxgl.Map({
       container: 'map',
       style: 'mapbox://styles/mapbox/streets-v10',
-      center: [lng, lat],
-      zoom: 17
+      center: [lon, lat],
+      zoom: zoom
     })
   }
 
   updateLayer() {
-
-    const coordinates = this.props.coordinates
-    console.log(
-      'map.js | updateLayer | this.props.coordinates ',
-      coordinates
-    )
+    const stats = this.props.stats
+    const coordinates = stats.map(el => [el.lon, el.lat])
     this.map.addLayer({
       id: 'route' + coordinates.length,
       type: 'line',
@@ -69,18 +64,8 @@ class Map extends React.Component {
   }
 
   render() {
-    console.log('map.js | render | props: ', this.props)
-    this.map && this.props.coordinates.length > 0 && this.updateLayer()
-    // if (this.props.coordinates.length > 0) {
-    //   const coordinates = this.props.coordinates
-    //   const lng = coordinates[coordinates.length - 1][0]
-    //   const lat = coordinates[coordinates.length - 1][1]
-
-    //   this.createMap(lng, lat)
-    //   this.updateLayer()
-    // }
-
-    return <div id="map" style={{width: 100 + '%', height: 600}} />
+    this.map && this.props.stats.length > 0 && this.updateLayer()
+    return <div id="map" style={{width: 100 + '%', height: 400}} />
   }
 }
 
@@ -90,7 +75,7 @@ class Map extends React.Component {
 const mapState = state => {
   return {
     sessionID: state.sessionID,
-    coordinates: state.stat
+    stats: state.stat.stats
   }
 }
 
@@ -100,5 +85,6 @@ export default connect(mapState)(Map)
  * PROP TYPES
  */
 Map.propTypes = {
-  sessionID: PropTypes.string
+  sessionID: PropTypes.string,
+  stats: PropTypes.array
 }

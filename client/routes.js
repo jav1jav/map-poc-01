@@ -2,13 +2,8 @@ import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import {withRouter, Route, Switch} from 'react-router-dom'
 import PropTypes from 'prop-types'
-import {Login, Signup, UserHome, Map} from './components'
+import {Login, UserHome, Welcome} from './components'
 import {me, getSession} from './store'
-import broadcastStats from './components/broadcastStats'
-import broadcastFake from './components/broadcastFake'
-import broadcastFake2 from './components/broadcastFake2'
-import testLocation from './components/testLocation'
-import graphPage from './components/graph'
 
 /**
  * COMPONENT
@@ -25,25 +20,29 @@ class Routes extends Component {
       <Switch>
         {/* Routes placed here are available to all visitors */}
         <Route path="/login" component={Login} />
-        <Route path="/signup" component={Signup} />
-        <Route path="/test" component={testLocation} />
-        <Route path="/broadcast" component={broadcastStats} />
-        <Route path="/broadcastFake" component={broadcastFake} />
-        <Route path="/broadcastFake2" component={broadcastFake2} />
-        <Route path="/graphs" component={graphPage} />
-        <Route path="/map" component={Map} />
+        <Route path="/welcome" component={Welcome} />
+
         {isLoggedIn && (
           <Switch>
             {/* Routes placed here are only available after logging in */}
             <Route path="/home" component={UserHome} />
+            <Route path="/user" component={UserHome} />
+            <Route component={UserHome} />
           </Switch>
         )}
-        {/* Displays our Login component as a fallback */}
-        <Route component={Login} />
+        {/* Displays our Welcome component as a fallback */}
+        {!isLoggedIn && (
+          <Switch>
+            {/* <Route path="/" component={Welcome} /> */}
+            <Route component={Welcome} />
+          </Switch>
+        )}
+
       </Switch>
     )
   }
 }
+
 
 /**
  * CONTAINER
@@ -76,3 +75,11 @@ Routes.propTypes = {
   loadInitialData: PropTypes.func.isRequired,
   isLoggedIn: PropTypes.bool.isRequired
 }
+
+
+// Notes to self:
+// is '<Route path="/" component={Welcome} />' a way to handle fallback or default routes?
+// remember that you have a testLocation component and a graph component and they had routes earlier
+// but you deleted these components and you will probably also delete the navbar
+// import testLocation from './components/testLocation'
+// import graphPage from './components/graph'
