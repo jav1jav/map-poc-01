@@ -1,6 +1,7 @@
 import React from 'react'
 import {updatePageWithText, sendRunnerStats} from './runnerMapUtils'
 import Map from './map'
+import StatsTable from './statsTable'
 
 
 let timeoutId = null
@@ -40,6 +41,7 @@ export default function runnerPage(props) {
             Stop Sharing Location Stats
           </button>
         </div>
+        <StatsTable />
         <div id="log" />
       </React-fragment>
     )
