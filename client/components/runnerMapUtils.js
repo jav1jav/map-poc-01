@@ -23,7 +23,7 @@ export function updatePageWithText(msg) {
 
 
 // * * * convertStatsArrayToObj * * *
-function convertStatsArrayToObj (...arr) {
+export function convertStatsArrayToObj (arr) {
   let obj = {}
   obj.userId = arr[0]
   obj.lat = arr[1]
@@ -53,54 +53,34 @@ function convertStatsObjToArray (obj) {
 // * * * sendFakeRunnerStats * * *
 //Function that broadcasts fake data from the data.json file
 
-//Parse the data from sample data file
+//Parse the data from sample data file. you basically want the objects
+//directly from the json except that heartrate and cadence are nested in
+//'extensions' so get rid of that
 const dataIn = require('./data.json')
-const data = dataIn.trkpt.map(el => [el.lon, el.lat])
 const dataObj = dataIn.trkpt.map(el => {
   let obj = el
   obj.userId = 2
-  // obj.lat = el.lat
-  // obj.lon = el.lon
-  // obj.time = el.time
-  // obj.ele = el.ele
   obj.cad = el.extensions.TrackPointExtension.cad
   obj.hr = el.extensions.TrackPointExtension.hr
   delete obj.extensions
   return obj
 })
 
-//Function declartion
+//Function sendFakeRunnerStats declartion
 let counter = 0
 function sendFakeRunnerStats(shouldBroadcast = true) {
-  const userId = 2
-  let latitude = null
-  let longitude = null
-  let xxx = null
-  let yyy = null
 
-  if (counter < data.length) {
-    // latitude = data[counter][1]
-    latitude = dataObj[counter].lat
-    xxx = dataObj[counter].time
-    yyy = dataObj[counter].cad
-    // longitude = data[counter++][0]
-    longitude = dataObj[counter++].lon
-
-  } else {
-    counter = 0
-    // latitude = data[counter][1]
-    latitude = dataObj[counter].lat
-    xxx = dataObj[counter].time
-    yyy = dataObj[counter].cad
-    // longitude = data[counter++][0]
-    longitude = dataObj[counter++].lon
+  // for POC manipulate counter to continue cycling through sample data indefinitely
+  if (counter >= dataIn.length) {
+    counter=0
   }
 
-  // shouldBroadcast && broadcaster.emit('sendRunnerStats', longitude, latitude, userId)
-  shouldBroadcast && broadcaster.emit('sendRunnerStats', ...convertStatsObjToArray(dataObj[counter]))
-  // store.dispatch(gotStat([longitude, latitude]))
+  shouldBroadcast &&
+    broadcaster.emit('sendRunnerStats', ...convertStatsObjToArray(dataObj[counter]))
+
   store.dispatch(gotStat(dataObj[counter]))
-  updatePageWithText(`lat: ${dataObj[counter].lat} lon: ${dataObj[counter].lon} time: ${dataObj[counter].time} cad: ${yyy}`)
+  updatePageWithText(`lat: ${dataObj[counter].lat} lon: ${dataObj[counter].lon} time: ${dataObj[counter].time} cad: ${dataObj[counter].cad}`)
+  counter++
 }
 
 
