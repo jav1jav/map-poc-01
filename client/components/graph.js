@@ -8,12 +8,14 @@ const data = require('./data.json')
 
 const hrArr = data.trkpt.map(el => ({
   x: new Date(el.time),
-  y: +el.extensions.TrackPointExtension.hr
+  // y: +el.extensions.TrackPointExtension.hr
+  y: +el.hr
 }))
 
 const cadArr = data.trkpt.map(el => ({
   x: new Date(el.time),
-  y: +el.extensions.TrackPointExtension.cad
+  // y: +el.extensions.TrackPointExtension.cad
+  y: +el.cad
 }))
 
 class App extends Component {
@@ -82,4 +84,6 @@ class App extends Component {
     )
   }
 }
-module.exports = App
+// module.exports = App
+
+export default App
