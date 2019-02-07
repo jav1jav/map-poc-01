@@ -15,33 +15,50 @@ class Map extends React.Component {
   map
 
   componentDidMount() {
-    const coordinates = this.props.coordinates
+    // const coordinates = this.props.coordinates
+    const stats = this.props.statsArr
+    // const coordinates = [stats.lon, stats.lat]
     // console.log('map.js | cdm | coordinates from props: ', coordinates)
-    let lng = -122.48369693756104
-    let lat = 37.83381888486939
-    if (coordinates.length > 0) {
-      lng = coordinates[coordinates.length - 1][0]
-      lat = coordinates[coordinates.length - 1][1]
+    // let lon = -122.48369693756104
+    // let lat = 37.83381888486939
+    // let lastStat = {}
+    // if (coordinates.length > 0) {
+    //   lon = coordinates[coordinates.length - 1].lon
+    //   lat = coordinates[coordinates.length - 1].lat
+    // }
+    if (stats.length > 0) {
+      console.log('map.js | cdm | stats from props: ', stats)
+      const lastStat = stats[stats.length - 1]
+      console.log('map.js | cdm | last stat lon lat: ', lastStat.lon, lastStat.lat)
+      this.createMap(lastStat.lon, lastStat.lat)
+    } else {
+      this.createMap(-122.48369693756104, 37.83381888486939)
     }
-    this.createMap(lng, lat)
+
+
+
+
   }
 
-  createMap(lng, lat) {
+  createMap(lon, lat) {
     this.map = new mapboxgl.Map({
       container: 'map',
       style: 'mapbox://styles/mapbox/streets-v10',
-      center: [lng, lat],
+      center: [lon, lat],
       zoom: 17
     })
   }
 
   updateLayer() {
 
-    const coordinates = this.props.coordinates
-    // console.log(
-    //   'map.js | updateLayer | this.props.coordinates ',
-    //   coordinates
-    // )
+    // const coordinates = this.props.coordinates
+    const stats = this.props.statsArr
+    // const lastStat = stats[stats.length - 1]
+    const coordinates = stats.map(el => [el.lon, el.lat])
+    console.log(
+      'map.js | updateLayer | this.props.coordinates ',
+      coordinates
+    )
     this.map.addLayer({
       id: 'route' + coordinates.length,
       type: 'line',
@@ -70,13 +87,13 @@ class Map extends React.Component {
 
   render() {
     // console.log('map.js | render | props: ', this.props)
-    this.map && this.props.coordinates.length > 0 && this.updateLayer()
+    this.map && this.props.statsArr.length > 0 && this.updateLayer()
     // if (this.props.coordinates.length > 0) {
     //   const coordinates = this.props.coordinates
-    //   const lng = coordinates[coordinates.length - 1][0]
+    //   const lon = coordinates[coordinates.length - 1][0]
     //   const lat = coordinates[coordinates.length - 1][1]
 
-    //   this.createMap(lng, lat)
+    //   this.createMap(lon, lat)
     //   this.updateLayer()
     // }
 
@@ -90,7 +107,8 @@ class Map extends React.Component {
 const mapState = state => {
   return {
     sessionID: state.sessionID,
-    coordinates: state.stat
+    // coordinates: state.stat
+    statsArr: state.stat
   }
 }
 
