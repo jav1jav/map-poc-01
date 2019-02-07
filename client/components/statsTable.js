@@ -4,7 +4,7 @@ import {connect} from 'react-redux'
 
 
 
-const StatsTable = ({stats}) => {
+const StatsTable = ({stats, lastStat}) => {
 
   // const stats = props.stats
     // console.log('map.js | cdm | stats from props: ', stats)
@@ -30,10 +30,10 @@ const StatsTable = ({stats}) => {
     //   cad = lastStat.cad
     // }
 
-    let lastStat = {}
-    if (stats.length > 0) {
-       lastStat = stats[stats.length -1]
-    }
+    // let lastStat = {}
+    // if (stats.length > 0) {
+    //    lastStat = stats[stats.length -1]
+    // }
 
 
 
@@ -56,7 +56,8 @@ const StatsTable = ({stats}) => {
 const mapState = state => {
   return {
     sessionID: state.sessionID,
-    stats: state.stat
+    stats: state.stat.stats,
+    lastStat: state.stat.lastStat
   }
 }
 
@@ -65,7 +66,8 @@ export default connect(mapState)(StatsTable)
 /**
  * PROP TYPES
  */
-Map.propTypes = {
+StatsTable.propTypes = {
   sessionID: PropTypes.string,
-  stats: PropTypes.array
+  stats: PropTypes.array,
+  lastStat: PropTypes.object
 }

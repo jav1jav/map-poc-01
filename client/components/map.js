@@ -74,7 +74,7 @@ class Map extends React.Component {
 const mapState = state => {
   return {
     sessionID: state.sessionID,
-    stats: state.stat
+    stats: state.stat.stats
   }
 }
 
