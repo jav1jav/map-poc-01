@@ -45,6 +45,34 @@ button {
   width: 100%;
 }
 
+.statsFormat {
+  display: flex;
+  justify-content: center;
+  margin: .3rem;
+  border-radius: 6px;
+}
+
+.statsTable {
+  flex-direction: row;
+}
+
+.statsColumn {
+  flex-direction: column;
+  border-style: solid;
+  border-width: .1rem;
+  width: 8%
+}
+
+.stat {
+  font-size: 20px
+}
+
+.statHeader {
+  border-bottom-style: solid;
+  border-bottom-width: .1rem;
+  border-bottom-color: black
+}
+
 .rickshaw_graph .detail .item.left,
 .rickshaw_graph .detail .x_label.left {
     left: 0
