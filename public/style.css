@@ -51,12 +51,23 @@ button {
   justify-content: space-between
 }
 
-.display {
-  display: flex
+#buttonStartStopContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
+
+/* .display {
+  display: flex
+} */
 
 .hide {
   display: none
+}
+
+.buttonStartStop {
+  border-radius: 6px;
+  width: 28%;
 }
 
 .statsFormat {

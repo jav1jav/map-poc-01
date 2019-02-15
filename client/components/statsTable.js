@@ -17,9 +17,7 @@ const StatsTable = props => {
   const firstStatTime = lastStat.hr ? new Date(stats[0].time) : 0
   const lastStatTime = lastStat.hr ? new Date(lastStat.time) : 0
 
-  const displayTime = lastStat.hr
-    ? convertMilliseconds(lastStatTime - firstStatTime)
-    : '00:00'
+  const displayTime = convertMilliseconds(lastStatTime - firstStatTime)
 
   return (
     <div className="statsTable statsFormat">
@@ -29,11 +27,11 @@ const StatsTable = props => {
       </div>
       <div className="statsColumn statsFormat">
         <div className="statHeader statsFormat">hr:</div>
-        <div className="stat statsFormat">{lastStat.hr}</div>
+        <div className="stat statsFormat">{lastStat.hr || 0}</div>
       </div>
       <div className="statsColumn statsFormat">
         <div className="statHeader statsFormat">cad:</div>
-        <div className="stat statsFormat">{lastStat.cad}</div>
+        <div className="stat statsFormat">{lastStat.cad || 0}</div>
       </div>
     </div>
   )

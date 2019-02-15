@@ -7,28 +7,25 @@ import {toggleStartStop} from '../store/stat'
 const ButtonStartStop = props => {
   const {id, statsBeingSent, startSharingStats, stopSharingStats} = props
   return (
-    <React-Fragment>
-      <div>
+    <div id="buttonStartStopContainer">
         <button
           id="startButton"
-          className={statsBeingSent ? 'hide' : 'display'}
+          className={'buttonStartStop ' + (statsBeingSent ? 'hide' : '')}
           type="submit"
           onClick={() => startSharingStats(id)}
         >
-          Start Sharing Location Stats
+          START
         </button>
-      </div>
-      <div>
         <button
           id="stopButton"
-          className={statsBeingSent ? 'display' : 'hide'}
+          className={'buttonStartStop ' + (statsBeingSent ? '' : 'hide')}
           type="submit"
           onClick={stopSharingStats}
         >
-          Stop Sharing Location Stats
+          STOP
         </button>
-      </div>
-    </React-Fragment>
+
+    </div>
   )
 }
 
