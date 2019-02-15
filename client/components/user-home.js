@@ -10,18 +10,17 @@ import {RunnerPage, CoachPage} from '.'
 export const UserHome = props => {
   const {email, id, handleClick} = props
   return (
-    <div>
-      <h3>User: {email + ', ID: ' + id}</h3>
-
-      <button type="submit" onClick={handleClick}>
-        Logout
-      </button>
+    <React-Fragment>
+    <div id="header">
+      <div>User: {email + ', ID: ' + id}</div>
+      <button type="submit" onClick={handleClick}>Logout</button>
+    </div>
       {id === 3 ?
         <CoachPage id={id} />
         :
         <RunnerPage id={id} />
       }
-    </div>
+    </React-Fragment>
   )
 }
 

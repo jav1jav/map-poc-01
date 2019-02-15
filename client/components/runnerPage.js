@@ -5,8 +5,7 @@ import StatsTable from './statsTable'
 import ButtonStartStop from './buttonStartStop'
 
 
-export default function runnerPage(props) {
-  console.log( 'runnerPage.js | props', props)
+export default function runnerPage() {
   if (!navigator.geolocation) {
     return <div>'geolocation not supported'</div>
   } else {
