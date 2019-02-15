@@ -3,17 +3,23 @@ import React from 'react'
 import {Navbar} from './components'
 import Routes from './routes'
 
-const App = () => {
+// const App = () => {
 
-  return (
-    <div>
+//   // return (
+//   //   <div>
 
-      {/* <Navbar /> */}
+//   //     {/* <Navbar /> */}
 
-      {/* <div><a href="https://www.linkedin.com/hp/javiercarey">Developer: Javier Carey</a></div> */}
-      <Routes />
-    </div>
-  )
-}
+//   //     {/* <div><a href="https://www.linkedin.com/hp/javiercarey">Developer: Javier Carey</a></div> */}
+//   //     <Routes />
+//   //   </div>
+//   // )
+
+
+
+// }
+
+
+const App = () => <Routes />
 
 export default App

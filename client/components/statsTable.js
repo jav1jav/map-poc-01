@@ -20,17 +20,17 @@ const StatsTable = props => {
   const displayTime = convertMilliseconds(lastStatTime - firstStatTime)
 
   return (
-    <div className="statsTable statsFormat">
+    <div className="statsTable">
       <div className="statsColumn statsFormat">
-        <div className="statHeader statsFormat">time:</div>
+        <div className="statHeader statsFormat">TIME:</div>
         <div className="stat statsFormat">{displayTime}</div>
       </div>
       <div className="statsColumn statsFormat">
-        <div className="statHeader statsFormat">hr:</div>
+        <div className="statHeader statsFormat">&#9829; RATE:</div>
         <div className="stat statsFormat">{lastStat.hr || 0}</div>
       </div>
       <div className="statsColumn statsFormat">
-        <div className="statHeader statsFormat">cad:</div>
+        <div className="statHeader statsFormat">CADENCE:</div>
         <div className="stat statsFormat">{lastStat.cad || 0}</div>
       </div>
     </div>

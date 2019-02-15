@@ -5,20 +5,6 @@ var CanvasJSChart = CanvasJSReact.CanvasJSChart
 import PropTypes from 'prop-types'
 import {connect} from 'react-redux'
 
-// const data = require('./data.json')
-
-// const hrArr = data.trkpt.map(el => ({
-//   x: new Date(el.time),
-//   // y: +el.extensions.TrackPointExtension.hr
-//   y: +el.hr
-// }))
-
-// const cadArr = data.trkpt.map(el => ({
-//   x: new Date(el.time),
-//   // y: +el.extensions.TrackPointExtension.cad
-//   y: +el.cad
-// }))
-
 const Graph = ({stats}) => {
   function toggleDataSeries(e) {
     if (typeof e.dataSeries.visible === 'undefined' || e.dataSeries.visible) {
@@ -31,13 +17,11 @@ const Graph = ({stats}) => {
 
   const hrArr = stats.map(el => ({
     x: new Date(el.time),
-    // y: +el.extensions.TrackPointExtension.hr
     y: +el.hr
   }))
 
   const cadArr = stats.map(el => ({
     x: new Date(el.time),
-    // y: +el.extensions.TrackPointExtension.cad
     y: +el.cad
   }))
 
@@ -70,7 +54,7 @@ const Graph = ({stats}) => {
     data: [
       {
         type: 'line',
-        name: 'heart rate',
+        name: 'Heart Rate',
         color: '#C24642',
         axisYIndex: 0,
         showInLegend: true,
@@ -86,29 +70,17 @@ const Graph = ({stats}) => {
       }
     ]
   }
-  return (
-    <div>
-      <CanvasJSChart
-        options={options}
-        /* onRef={ref => this.chart = ref */
-      />
-      {/*You can get reference to the chart instance as shown above using onRef. This allows you to access all chart properties and methods*/}
-    </div>
-  )
+  return <CanvasJSChart options={options} />
+  /* onRef={ref => this.chart = ref */
+  /*You can get reference to the chart instance as shown above using onRef. This allows you to access all chart properties and methods*/
 }
-
-// module.exports = App
-
-// export default App
 
 /**
  * CONTAINER
  */
 const mapState = state => {
   return {
-    sessionID: state.sessionID,
-    stats: state.stat.stats,
-    lastStat: state.stat.lastStat
+    stats: state.stat.stats
   }
 }
 
@@ -118,7 +90,5 @@ export default connect(mapState)(Graph)
  * PROP TYPES
  */
 Graph.propTypes = {
-  sessionID: PropTypes.string,
-  stats: PropTypes.array,
-  lastStat: PropTypes.object
+  stats: PropTypes.array
 }

@@ -65,7 +65,7 @@ class Map extends React.Component {
 
   render() {
     this.map && this.props.stats.length > 0 && this.updateLayer()
-    return <div id="map" style={{width: 100 + '%', height: 400}} />
+    return <div id="map" />
   }
 }
 

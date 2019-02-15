@@ -8,23 +8,22 @@ const ButtonStartStop = props => {
   const {id, statsBeingSent, startSharingStats, stopSharingStats} = props
   return (
     <div id="buttonStartStopContainer">
-        <button
-          id="startButton"
-          className={'buttonStartStop ' + (statsBeingSent ? 'hide' : '')}
-          type="submit"
-          onClick={() => startSharingStats(id)}
-        >
-          START
-        </button>
-        <button
-          id="stopButton"
-          className={'buttonStartStop ' + (statsBeingSent ? '' : 'hide')}
-          type="submit"
-          onClick={stopSharingStats}
-        >
-          STOP
-        </button>
-
+      <button
+        id="startButton"
+        className={'buttonStartStop ' + (statsBeingSent ? 'hide' : '')}
+        type="submit"
+        onClick={() => startSharingStats(id)}
+      >
+        START
+      </button>
+      <button
+        id="stopButton"
+        className={'buttonStartStop ' + (statsBeingSent ? '' : 'hide')}
+        type="submit"
+        onClick={stopSharingStats}
+      >
+        STOP
+      </button>
     </div>
   )
 }
@@ -58,7 +57,8 @@ const mapDispatch = dispatch => {
   }
 
   return {
-    startSharingStats, stopSharingStats
+    startSharingStats,
+    stopSharingStats
   }
 }
 
