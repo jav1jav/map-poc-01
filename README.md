@@ -1,7 +1,7 @@
 
 # running-data-dashboard
 
-##Introduction
+## Introduction
 
 This project is intended to be a proof of concept to show broadcasting and displaying GPS data in real time, showcasing use of React, Redux, Socket.IO, Mapbox, Canvas.JS and CSS implementation.
 
@@ -10,7 +10,7 @@ It is pulling boilerplate code from https://github.com/FullstackAcademy/boilerma
 The latest version of the app is deployed to https://running-data-dashboard.herokuapp.com/test
 
 
-##20190215
+## 20190215
 
 * Project looks good enough and works reliably enough to post to heroku for people to see.
 * Outstanding work:
@@ -21,7 +21,7 @@ The latest version of the app is deployed to https://running-data-dashboard.hero
 Implementing safeguards/socket channels is probably the next piece of work, though I might put this on hold to fork a different, previously half-written group project from my bootcamp experience and clean that up for public display.
 
 
-##20190129
+## 20190129
 
 I'm working on this project again.
 
