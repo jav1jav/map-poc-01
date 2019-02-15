@@ -5,8 +5,9 @@ import store from '../store'
 import {gotStat} from '../store/stat'
 
 
-
-// * * * updatePageWithText * * *
+// * * * * * * * * * * * * * * * * * *
+// * * * updatePageWithText      * * *
+// * * * * * * * * * * * * * * * * * *
 //Utility function used to write a value (msg) to a 'log' element on a page
 //This was used in development to validate that the app was sending data
 //and to log when user started sharing and stopped sharing data.
@@ -22,7 +23,9 @@ export function updatePageWithText(msg) {
 }
 
 
-// * * * convertStatsArrayToObj * * *
+// * * * * * * * * * * * * * * * * * *
+// * * * convertStatsArrayToObj  * * *
+// * * * * * * * * * * * * * * * * * *
 export function convertStatsArrayToObj (arr) {
   let obj = {}
   obj.userId = arr[0]
@@ -35,8 +38,9 @@ export function convertStatsArrayToObj (arr) {
   return obj
 }
 
-
-// * * * convertStatsObjToArray * * *
+// * * * * * * * * * * * * * * * * * *
+// * * * convertStatsObjToArray  * * *
+// * * * * * * * * * * * * * * * * * *
 function convertStatsObjToArray (obj) {
   let arr = []
   arr[0] = obj.userId
@@ -49,8 +53,9 @@ function convertStatsObjToArray (obj) {
   return arr
 }
 
-
-// * * * sendFakeRunnerStats * * *
+// * * * * * * * * * * * * * * * * * *
+// * * * sendFakeRunnerStats     * * *
+// * * * * * * * * * * * * * * * * * *
 //Function that broadcasts fake data from the data.json file
 
 //Parse the data from sample data file. you basically want the objects
@@ -83,8 +88,9 @@ function sendFakeRunnerStats(shouldBroadcast = true) {
   counter++
 }
 
-
-// * * * sendRealRunnerStats * * *
+// * * * * * * * * * * * * * * * * * *
+// * * * sendRealRunnerStats     * * *
+// * * * * * * * * * * * * * * * * * *
 //Function that broadcasts fake data from the data.json file
 
 function sendRealRunnerStats(shouldBroadcast = true) {
@@ -112,7 +118,9 @@ function sendRealRunnerStats(shouldBroadcast = true) {
   navigator.geolocation.getCurrentPosition(success, error)
 }
 
-// * * * sendRunnerStats * * *
+// * * * * * * * * * * * * * * * * * *
+// * * *   sendRunnerStats       * * *
+// * * * * * * * * * * * * * * * * * *
 //Function that is exported and used in runnerPage that takes an ID and
 //then decides to send stats for fake user or real user
 
