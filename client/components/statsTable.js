@@ -22,15 +22,15 @@ const StatsTable = props => {
   return (
     <div className="statsTable">
       <div className="statsColumn statsFormat">
-        <div className="statHeader statsFormat">TIME:</div>
+        <div className="statHeader statsFormat">TIME</div>
         <div className="stat statsFormat">{displayTime}</div>
       </div>
       <div className="statsColumn statsFormat">
-        <div className="statHeader statsFormat">&#9829; RATE:</div>
+        <div className="statHeader statsFormat">&#9829; RATE</div>
         <div className="stat statsFormat">{lastStat.hr || 0}</div>
       </div>
       <div className="statsColumn statsFormat">
-        <div className="statHeader statsFormat">CADENCE:</div>
+        <div className="statHeader statsFormat">CADENCE</div>
         <div className="stat statsFormat">{lastStat.cad || 0}</div>
       </div>
     </div>
