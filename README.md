@@ -49,6 +49,8 @@ ABOUT THE CODE (explaining the app to myself)
 
 # Boilermaker
 
+_(From here on in the README is documentation written to support the boilermaker code that I used to get the base app up and running)_
+
 _Good things come in pairs_
 
 Looking to mix up a backend with express/sequelize and a frontend with react/redux? That's `boilermaker`!
