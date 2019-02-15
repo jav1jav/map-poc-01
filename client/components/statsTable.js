@@ -42,7 +42,6 @@ const StatsTable = props => {
  */
 const mapState = state => {
   return {
-    sessionID: state.sessionID,
     stats: state.stat.stats,
     lastStat: state.stat.lastStat
   }
@@ -54,7 +53,6 @@ export default connect(mapState)(StatsTable)
  * PROP TYPES
  */
 StatsTable.propTypes = {
-  sessionID: PropTypes.string,
   stats: PropTypes.array,
   lastStat: PropTypes.object
 }
