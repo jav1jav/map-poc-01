@@ -12,12 +12,8 @@ export const UserHome = props => {
   return (
     <React.Fragment>
       <div id="header">
-        <div>
-          {email} (ID: {id})
-        </div>
-        <button id="logout" type="submit" onClick={handleClick}>
-          LOGOUT
-        </button>
+        <div>{email} (ID: {id})</div>
+        <button id="logout" type="submit" onClick={handleClick}>LOGOUT</button>
       </div>
       {id === 3 ? <CoachPage id={id} /> : <RunnerPage id={id} />}
     </React.Fragment>
