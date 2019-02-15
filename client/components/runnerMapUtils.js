@@ -2,7 +2,7 @@ import {EventEmitter} from 'events'
 export const broadcaster = new EventEmitter()
 
 import store from '../store'
-import {gotStat} from '../store/stat'
+import {gotStat, toggleStartStop} from '../store/stat'
 
 
 // * * * * * * * * * * * * * * * * * *
@@ -84,6 +84,7 @@ function sendFakeRunnerStats(shouldBroadcast = true) {
     broadcaster.emit('sendRunnerStats', ...convertStatsObjToArray(dataObj[counter]))
 
   store.dispatch(gotStat(dataObj[counter]))
+
   updatePageWithText(`lat: ${dataObj[counter].lat} lon: ${dataObj[counter].lon} time: ${dataObj[counter].time} cad: ${dataObj[counter].cad}`)
   counter++
 }

@@ -3,11 +3,11 @@ import PropTypes from 'prop-types'
 import {connect} from 'react-redux'
 
 const convertMilliseconds = ms => {
-  const totalSeconds = Math.floor(ms / 1000)
-  const seconds = totalSeconds % 60
-  const minutes = Math.floor(totalSeconds / 60)
   const addZero = num => (num < 10 ? '0' + num : num)
-  return addZero(minutes) + ':' + addZero(seconds)
+  const totalSeconds = Math.floor(ms / 1000)
+  const seconds = addZero(totalSeconds % 60)
+  const minutes = addZero(Math.floor(totalSeconds / 60))
+  return minutes + ':' + seconds
 }
 
 const StatsTable = props => {
@@ -21,6 +21,7 @@ const StatsTable = props => {
     ? convertMilliseconds(new Date(lastStat.time) - firstStatTime)
     : '00:00'
 
+  console.log('statsTable.js | props', props)
   return (
     <div className="statsTable statsFormat">
       <div className="statsColumn statsFormat">

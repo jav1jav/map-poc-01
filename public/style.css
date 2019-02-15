@@ -45,6 +45,14 @@ button {
   width: 100%;
 }
 
+.display {
+  display: flex
+}
+
+.hide {
+  display: none
+}
+
 .statsFormat {
   display: flex;
   justify-content: center;

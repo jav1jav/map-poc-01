@@ -9,7 +9,6 @@ import {RunnerPage, CoachPage} from '.'
  */
 export const UserHome = props => {
   const {email, id, handleClick} = props
-
   return (
     <div>
       <h3>User: {email + ', ID: ' + id}</h3>
