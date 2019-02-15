@@ -16,7 +16,7 @@ The latest version of the app is deployed to https://running-data-dashboard.hero
 * Outstanding work:
     * Bug - logout as coach while receiving data from runner results in browser showing nothing, i think that b/c app is still receiving data, state is still changing, and Maps and Graph components are still trying to render but can't and cry loudly.
     * Coach should have the option to pick an athlete - have not built this feature
-    * There's no safeguards against multiple logins, which knowing my luck means that the only time two recruiters go to the site they will do so at the same time and see bizarre behavior. I will need to implement channels for sockets.
+    * There's no safeguards against multiple logins, which knowing my luck means that the only time two recruiters go to the site they will do so at the same time and see bizarre behavior. To fix I will need to implement channels for sockets.
 
 Implementing safeguards/socket channels is probably the next piece of work, though I might put this on hold to fork a different, previously half-written group project from my bootcamp experience and clean that up for public display.
 
