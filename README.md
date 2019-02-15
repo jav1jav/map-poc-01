@@ -1,35 +1,50 @@
 
-# map-poc-01
-This project is intended to be a proof of concept to show broadcasting and displaying GPS data in real time. It is pulling boilerplate code from https://github.com/FullstackAcademy/boilermaker.git
+# running-data-dashboard
 
-A version of the app is deployed to https://map-poc-01.herokuapp.com/test
+##Introduction
 
-----
+This project is intended to be a proof of concept to show broadcasting and displaying GPS data in real time, showcasing use of React, Redux, Socket.IO, Mapbox, Canvas.JS and CSS implementation.
 
-20190129
+It is pulling boilerplate code from https://github.com/FullstackAcademy/boilermaker.git
+
+The latest version of the app is deployed to https://running-data-dashboard.herokuapp.com/test
+
+
+##20190215
+
+* Project looks good enough and works reliably enough to post to heroku for people to see.
+* Outstanding work:
+** Bug - logout as coach while receiving data from runner results in browser showing nothing, i think that b/c app is still receiving data, state is still changing, and components are still trying to render.
+** Coach should have the option to pick an athlete - have not built this feature
+** There's no safeguards against multiple logins, which knowing my luck means that the only time two recruiters go to the site they will do so at the same time and see bizarre behavior. I will need to implement channels for sockets.
+
+Implementing safeguards/socket channels is probably the next piece of work, though I might put this on hold to fork a different, previously half-written group project from my bootcamp experience and clean that up for public display.
+
+
+##20190129
 
 I'm working on this project again.
 
 I have redone the home page to direct the viewer through an experience to understand the functionality I built during the FullStack hackathon. The viewer can login as one of 3 users: realathlete, fakeathlete, and coach.
 
-ABOUT THE CODE
+ABOUT THE CODE (explaining the app to myself)
 
-client/components/welcome.js is the home page with the instructions
+* index.js, (which is the entry point specified in webpack.config.js so that webpack can generate public/bundle.js) calls app.js
+* app.js, (which the boilerplate code has doing a lot) calls routes.js
+* routes.js, sets up the local routes, mapping urls to React components depending whether user is logged in or not.
 
-client/components/auth-form.js, form to login, the route is https://localhost:8080/login. the auth-form uses React to generate the form and then Redux connect mapDispatchToProps to link the form to the handleSubmit method - which dispatches 'auth' method
+* client/components/welcome.js, if not logged in, routes.js forces loading of the welcome component. is the home page with the instructions regarding the poc demo.
 
-/client/store/user.js exports 'auth' method makes the axios post to '/auth/ and then if 'res' gets back a user then history.push redirects to the route '/user/userId' which corresponds to fakeathlete, realathlete or coach.
+* Welcome loads the Login component. There's a route to access login component directly: the route is https://localhost:8080/login. Login component is generated from client/components/auth-form.js. The auth-form uses React to generate the Login form and then Redux connect mapDispatchToProps to link the form to the handleSubmit method - which dispatches 'auth' method - which talks to the back end.
 
-/client/routes.js (called by app.js, called by index.js, which is the entry point specified in webpack.config.js so that webpack can generate public/bundle.js) maps the routes:
+* the auth method is exported from /client/store/user.js. It makes the axios post to '/auth/ and then if 'res' gets back a user then history.push redirects to the route '/user/userId'.
 
-        <Route path="/login" component={Login} />
-        <Route path="/user/1" component={broadcastStats} /> //realathlete - broadcast location data from a browser on a mobile device
-        <Route path="/user/2" component={runnerPage} /> //fakeathlete - broadcast fake running data
-        <Route path="/user/3" component={Map} /> // coach - view the athlete data
-        <Route path="/welcome" component={Welcome} />
+* then we're doing some hacky stuff to point user where id=3 to the coachPage, and the other 2 users to the runnerPage.
 
+* /client/components/runnerPage.js loads for the runners
+* /client/components/coachPage.js loads for the coach
 
-----
+* Runner and coach pages have a map component and a statsTable component that display the data that's being broadcast via sockets and then written to local app state using Redux, which results in the re-rendering of the components - ie. updates to the runner's path being drawn on the map and updates to the values for the statistics.
 
 
 # Boilermaker
