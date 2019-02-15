@@ -2,19 +2,12 @@ import React from 'react'
 import {updatePageWithText, sendRunnerStats} from './runnerMapUtils'
 import PropTypes from 'prop-types'
 import {connect} from 'react-redux'
-// import store from '../store'
 import {toggleStartStop} from '../store/stat'
 
 const ButtonStartStop = props => {
-  console.log('buttonStartStop.js | props', props)
   const {id, statsBeingSent, startSharingStats, stopSharingStats} = props
   return (
     <React-Fragment>
-      {/* <div>
-          <button type="submit" onClick={() => sendRunnerStats(props.id)}>
-            Send Current Position
-          </button>
-        </div> */}
       <div>
         <button
           id="startButton"
@@ -44,11 +37,7 @@ const ButtonStartStop = props => {
  */
 const mapState = state => {
   return {
-    // sessionID: state.sessionID,
-    // stats: state.stat.stats,
-    // lastStat: state.stat.lastStat,
     id: state.user.id,
-    lastStat: state.stat.lastStat,
     statsBeingSent: state.stat.sendingStats
   }
 }
@@ -82,8 +71,6 @@ export default connect(mapState, mapDispatch)(ButtonStartStop)
  * PROP TYPES
  */
 ButtonStartStop.propTypes = {
-  // sessionID: PropTypes.string,
-  // stats: PropTypes.array,
-  // lastStat: PropTypes.object
+  id: PropTypes.number,
   statsBeingSent: PropTypes.bool
 }

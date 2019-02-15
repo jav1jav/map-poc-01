@@ -2,7 +2,7 @@ import {EventEmitter} from 'events'
 export const broadcaster = new EventEmitter()
 
 import store from '../store'
-import {gotStat, toggleStartStop} from '../store/stat'
+import {gotStat} from '../store/stat'
 
 
 // * * * * * * * * * * * * * * * * * *

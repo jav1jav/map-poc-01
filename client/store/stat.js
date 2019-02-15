@@ -20,26 +20,12 @@ const initialState = {
 /**
  * ACTION CREATORS
  */
-export const gotStat = stat => {
-  console.log('stat.js | running gotStat() action creator')
-  return {type: GOT_STAT, stat}
-}
-export const toggleStartStop = () => {
-  console.log('stat.js | running toggleStartStop() action creator')
-  return {type: TOGGLE_START_STOP_BUTTON}
-}
+export const gotStat = stat => ({type: GOT_STAT, stat})
+export const toggleStartStop = () => ({type: TOGGLE_START_STOP_BUTTON})
 
 /**
  * THUNK CREATORS
  */
-// export const me = () => async dispatch => {
-//   try {
-//     const res = await axios.get('/auth/me')
-//     dispatch(gotUser(res.data || defaultUser))
-//   } catch (err) {
-//     console.error(err)
-//   }
-// }
 
 
 /**

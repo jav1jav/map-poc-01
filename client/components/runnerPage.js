@@ -15,7 +15,7 @@ export default function runnerPage(props) {
         <Map />
         <StatsTable />
         <ButtonStartStop />
-        <div id="log" />
+        <div id="log" className="hide" />
       </React-fragment>
     )
   }

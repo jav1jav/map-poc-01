@@ -11,17 +11,16 @@ const convertMilliseconds = ms => {
 }
 
 const StatsTable = props => {
-  const defaultStat = {time: 0, hr: 0, cad: 0}
 
-  const firstStatTime = props.lastStat.hr ? new Date(props.stats[0].time) : 0
+  const {lastStat, stats} = props
 
-  const lastStat = props.lastStat.hr ? props.lastStat : defaultStat
+  const firstStatTime = lastStat.hr ? new Date(stats[0].time) : 0
+  const lastStatTime = lastStat.hr ? new Date(lastStat.time) : 0
 
-  const displayTime = props.lastStat.hr
-    ? convertMilliseconds(new Date(lastStat.time) - firstStatTime)
+  const displayTime = lastStat.hr
+    ? convertMilliseconds(lastStatTime - firstStatTime)
     : '00:00'
 
-  console.log('statsTable.js | props', props)
   return (
     <div className="statsTable statsFormat">
       <div className="statsColumn statsFormat">
