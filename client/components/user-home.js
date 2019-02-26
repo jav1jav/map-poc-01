@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 import {connect} from 'react-redux'
 import {logout, reinitializeStats, clearStatsEmitter} from '../store'
 import {RunnerPage, CoachPage} from '.'
+import socket from '../socket'
 
 /**
  * COMPONENT
@@ -34,6 +35,7 @@ const mapState = state => {
 const mapDispatch = dispatch => {
   return {
     handleClick(statsEmitterTimeoutId) {
+      socket.disconnect()
       dispatch(logout())
       dispatch(clearStatsEmitter(statsEmitterTimeoutId))
       dispatch(reinitializeStats())
