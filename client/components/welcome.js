@@ -56,6 +56,7 @@ const Welcome = () => {
         </ol>
       </div>
       <Login />
+      <img src='./Coach201.jpg' className='hide' />
     </div>
   )
 }
