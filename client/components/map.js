@@ -1,5 +1,4 @@
 import React from 'react'
-import ReactDOM from 'react-dom'
 import PropTypes from 'prop-types'
 import {connect} from 'react-redux'
 import mapboxgl from 'mapbox-gl/dist/mapbox-gl.js'
@@ -74,7 +73,6 @@ class Map extends React.Component {
  */
 const mapState = state => {
   return {
-    sessionID: state.sessionID,
     stats: state.stat.stats
   }
 }
@@ -85,6 +83,5 @@ export default connect(mapState)(Map)
  * PROP TYPES
  */
 Map.propTypes = {
-  sessionID: PropTypes.string,
   stats: PropTypes.array
 }

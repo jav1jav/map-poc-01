@@ -6,7 +6,7 @@ export default function coachPage() {
     <React.Fragment>
       <Map />
       <StatsTable />
-      <Graph />
+      {/* <Graph /> */}
     </React.Fragment>
   )
 }
