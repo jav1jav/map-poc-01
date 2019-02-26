@@ -2,7 +2,7 @@ import React from 'react'
 import {updatePageWithText, sendRunnerStats} from './runnerMapUtils'
 import PropTypes from 'prop-types'
 import {connect} from 'react-redux'
-import {toggleStartStop} from '../store/stat'
+import {toggleStartStop, setStatsEmitterTimeoutId, clearStatsEmitter} from '../store'
 
 const ButtonStartStop = props => {
   const {id, statsBeingSent, startSharingStats, stopSharingStats} = props
@@ -34,7 +34,8 @@ const ButtonStartStop = props => {
 const mapState = state => {
   return {
     id: state.user.id,
-    statsBeingSent: state.stat.sendingStats
+    statsBeingSent: state.stat.sendingStats,
+    statsTimeoutId: state.stat.statsTimeoutId
   }
 }
 
@@ -47,10 +48,11 @@ const mapDispatch = dispatch => {
     dispatch(toggleStartStop())
     sendRunnerStats(id)
     timeoutId = setInterval(sendRunnerStats, 3000, id)
+    dispatch(setStatsEmitterTimeoutId(timeoutId))
   }
 
   function stopSharingStats() {
-    clearTimeout(timeoutId)
+    dispatch(clearStatsEmitter(timeoutId))
     dispatch(toggleStartStop())
     alert('not sharing stats')
     updatePageWithText('Stopped sharing stats.')
