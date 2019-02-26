@@ -106,8 +106,8 @@ function sendRealRunnerStats(shouldBroadcast = true) {
     var latitude = position.coords.latitude
     var longitude = position.coords.longitude
     shouldBroadcast &&
-      broadcaster.emit('sendRunnerStats', longitude, latitude, userId)
-    store.dispatch(gotStat([longitude, latitude]))
+      broadcaster.emit('sendRunnerStats', userId, latitude, longitude)
+    store.dispatch(gotStat(convertStatsArrayToObj([userId, latitude, longitude])))
     updatePageWithText(`lat: ${latitude} lon: ${longitude}`)
   }
 
