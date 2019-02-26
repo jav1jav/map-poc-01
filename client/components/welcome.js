@@ -38,7 +38,8 @@ const Welcome = () => {
             <li>
               The RealAthlete account shows the runner's experience but instead
               of generating fake statistics, the app will send the actual
-              location of the device. (You must respond positively to the prompt
+              location of the device. (YOU MUST USE HTTPS!!!!
+              and you must respond positively to the prompt
               from the browser to allow the app to access location data). Log in
               as the RealAthlete on a mobile device, click the start button and
               begin walking to generate location data.
