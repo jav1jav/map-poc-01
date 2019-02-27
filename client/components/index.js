@@ -1,4 +1,4 @@
-import runnerPage from './runnerPage';
+// import runnerPage from './runnerPage';
 
 /**
  * `components/index.js` exists simply as a 'central export' for our components.
@@ -13,5 +13,7 @@ export {Login, Signup} from './auth-form'
 export {default as RunnerPage} from './runnerPage'
 export {default as CoachPage} from './coachPage'
 export {default as Graph} from './graph'
+export {deleteGraph} from './graph'
 export {default as StatsTable} from './statsTable'
 export {default as ButtonStartStop} from './buttonStartStop'
+export {default as ErrorBoundary} from './errorBoundary'
