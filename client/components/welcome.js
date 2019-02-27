@@ -11,7 +11,7 @@ const Welcome = () => {
           This is a proof of concept app for a dashboard to display real time
           running statistics to a coach. To see all features of the POC, use one
           browser window to log in as an athelete and another incognito window
-          to log in as a coach.
+          to log in as a coach. Key technologies used were React, Redux, Socket.IO, MapBox. ß
         </div>
         <div>There are 3 accounts:</div>
         <ol>
@@ -22,12 +22,7 @@ const Welcome = () => {
           </h3>
           <ul>
             <li>
-              The FakeAthlete account shows a runner's experience using the app,
-              best seen on a mobile device. A logged-in runner is presented a
-              map showing their location and a set of statistics about their run
-              (heart rate, stride rate, pace, etc...). Click the start button to
-              start a workout and the app automatically generates fake running
-              statistics for a previously executed track workout.
+              Login as FakeAthlete and click start to send running statistics to the coach. The app sends fake data from a track workout.
             </li>
           </ul>
           <h3>
@@ -37,13 +32,7 @@ const Welcome = () => {
           </h3>
           <ul>
             <li>
-              The RealAthlete account shows the runner's experience but instead
-              of generating fake statistics, the app will send the actual
-              location of the device. (YOU MUST USE HTTPS!!!!
-              and you must respond positively to the prompt
-              from the browser to allow the app to access location data). Log in
-              as the RealAthlete on a mobile device, click the start button and
-              begin walking to generate location data.
+              Login as RealAthlete and click start to send your location to the coach. NOTE: You must use HTTPS, you must respond to the prompt to allow the app to access location, and with no movement there is currently no marker to indicate your actual location, although the map should show your general location.
             </li>
           </ul>
           <h3>
@@ -51,8 +40,7 @@ const Welcome = () => {
           </h3>
           <ul>
             <li>
-              The Coach's experience allows the coach to select an athlete and
-              then view a dashboard of that athlete's live performance.
+              The Coach's view displays the information being broadcast by the athletes.
             </li>
           </ul>
         </ol>
