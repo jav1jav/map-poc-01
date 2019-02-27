@@ -7,8 +7,16 @@ This project is intended to be a proof of concept to show broadcasting and displ
 
 It is pulling boilerplate code from https://github.com/FullstackAcademy/boilermaker.git
 
-The latest version of the app is deployed to https://running-data-dashboard.herokuapp.com/test
+The latest version of the app is deployed to https://running-data-dashboard.herokuapp.com
 
+## 20190227
+
+* A bunch of updates to the app, including a fix (or a catch) for the error logging out as coach by putting in a react errorBoundary around the Graph component. Formatting is nicer. Logout button properly stops the socket connection and resets state, so that you can log back in as a different user and not see an earlier set of stats or experience other wonky behavior. Tried adding meta tags so that LinkedIn would pull in an image when I linked to the project but to no avail. 
+
+* Outstanding:
+    * Coach to pick athlete
+    * Safeguards against multiple people logging in as same user
+    
 
 ## 20190215
 
