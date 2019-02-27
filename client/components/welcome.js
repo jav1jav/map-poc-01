@@ -2,6 +2,7 @@ import React from 'react'
 import {Login} from './auth-form'
 
 const Welcome = () => {
+  const pathName = window.origin
   return (
     <div>
       <div>
@@ -57,7 +58,7 @@ const Welcome = () => {
         </ol>
       </div>
       <Login />
-      <img src='./Coach201.jpg' className='hide' />
+      <img src={pathName + '/Coach201.jpg'} />
     </div>
   )
 }
