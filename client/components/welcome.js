@@ -32,7 +32,7 @@ const Welcome = () => {
           </h3>
           <ul>
             <li>
-              Login as RealAthlete and click start to send your location to the coach. NOTE: You must use HTTPS, you must respond to the prompt to allow the app to access location, and with no movement there is currently no marker to indicate your actual location, although the map should show your general location.
+              Login as RealAthlete and click start to send your location to the coach. NOTE: You must use HTTPS, you must respond to the prompt to allow the app to access location, and there is currently no marker to indicate your actual location, although the map will show your vicinity and draw a line if you're moving.
             </li>
           </ul>
           <h3>
