@@ -3,12 +3,15 @@ import PropTypes from 'prop-types'
 import {connect} from 'react-redux'
 import {logout, reinitializeStats, clearStatsEmitter} from '../store'
 import {RunnerPage, CoachPage} from '.'
-import socket from '../socket'
+import socket, {socketDisconnect, socketReconnect} from '../socket'
 
 /**
  * COMPONENT
  */
 export const UserHome = props => {
+  if (!socket.connected) {
+    socketReconnect()
+  }
   const {email, id, statsEmitterTimeoutId, handleClick} = props
   return (
     <React.Fragment>
@@ -35,7 +38,7 @@ const mapState = state => {
 const mapDispatch = dispatch => {
   return {
     handleClick(statsEmitterTimeoutId) {
-      socket.disconnect()
+      socketDisconnect()
       dispatch(logout())
       dispatch(clearStatsEmitter(statsEmitterTimeoutId))
       dispatch(reinitializeStats())

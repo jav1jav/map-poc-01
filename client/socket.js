@@ -3,10 +3,23 @@ import { broadcaster, convertStatsArrayToObj } from './components/runnerMapUtils
 import store from './store'
 import { gotStat } from './store/stat'
 
-const socket = io(window.location.origin)
+const socket = io.connect(window.location.origin)
+
+export const socketDisconnect = () => {
+  socket.io.disconnect()
+}
+
+export const socketReconnect = () => {
+  socket.connect(window.location.origin, {'forceNew':true })
+}
+
 
 socket.on('connect', () => {
   console.log('Connected!')
+})
+
+socket.on('disconnect', () => {
+  console.log('Disconnected!')
 })
 
 socket.on('forwardRunnerStats', function(...payload) {
